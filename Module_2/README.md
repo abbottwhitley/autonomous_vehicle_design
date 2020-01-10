@@ -34,7 +34,7 @@
 
 | Pin    | Pin  |             |
 | Number | Name | Description |
-| ------ | ----- |------------|
+| ------ | ----- | ---------- |
 | 1      | Vcc  | Powers module, may be +3V to +5V |
 | 2 | Ground | Connect to system ground |
 | 3 | Serial Clock (SCL) | I2C communication clock pulse |
