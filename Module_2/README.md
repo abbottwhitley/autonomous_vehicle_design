@@ -27,14 +27,14 @@
 
 ### MPU-6050 Pinout
 
-![MPU-6050 Pinout](./images/mpu6050-pinout.jpg "MPU-6050 Pinout")
+![MPU-6050 Pinout](./images/mpu6050-pinout.png "MPU-6050 Pinout")
 
 
 ### MPU-6050 Pin Configuration
 
 | Pin    | Pin  |             |
 | Number | Name | Description |
-| :---   | :--- | :---        |
+| ------ | ----- |------------|
 | 1      | Vcc  | Powers module, may be +3V to +5V |
 | 2 | Ground | Connect to system ground |
 | 3 | Serial Clock (SCL) | I2C communication clock pulse |
