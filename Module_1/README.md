@@ -28,9 +28,11 @@ Serial communication between the Arduino and computer is asynchronous, meaning t
 
 The bit rate is the number of transmitted bits per second. Baud rate is defined as the number of signal or symbol changes per second. Baud rate differs from bit rate when more than one bit per baud is transmitted. This involves transmitting symbols representing multiple bits in a transmission interval and beyond the scope of this discussion. Just be aware that bit rate and baud rate differ when th number of bits per baud is not 1.
 
-`Bit rate = Baud rate x number of bit per baud
+```
+Bit rate = Baud rate x number of bit per baud
 
-Baud rate = bit rate / number of bit per baud`
+Baud rate = bit rate / number of bit per baud
+```
 
 
 ![Bit rate versus baud rate](./images/bitversusbaud.jpg "Bit rate versus baud rate")
