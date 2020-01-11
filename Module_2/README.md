@@ -32,7 +32,7 @@
 
 ### MPU-6050 Pin Configuration
 
-| Pin Number | Pine Name | Description |
+| Pin Number | Pin Name | Description |
 | ------ | ----- | ---------- |
 | 1      | Vcc  | Powers module, may be +3V to +5V |
 | 2 | Ground | Connect to system ground |
