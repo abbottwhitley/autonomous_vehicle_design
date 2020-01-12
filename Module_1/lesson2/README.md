@@ -59,27 +59,56 @@ Instructions
 ![Lesson 2a output](./images/lesson2a_output.png "python lesson 2a output")
 
 
-### Lesson 2b - Arduino transmits multiple binary byte values
+### Lesson 2b - Arduino transmits an array of binary byte values
 
 
 #### Arduino source code - lesson2b.ino
 
-The count value data type is unsigned int, which uses 2 bytes of memory. It stores numbers in the range [0, 1023]. 
+Description
+- The count value data type is unsigned int, which uses 2 bytes of memory. It stores numbers in the range [0, 65535]. 
+- The Serial.write(buf,len) function transmits the data as a series of bytes.
+  - The unsigned int must be converted into individual bytes and stored in an array. The higher order byte is stored in the first array element, index position 0. The lower order byte is stored in array index 1.
 
-The Serial.write(buf, len) function is used to transmit both bytes. It is transmitted as a series of bytes.
 
-Example: 
- The value 1   is transmitted as 00000000 00000001  0x00 0x01
- The value 9   is transmitted as 00000000 00001001  0x00 0x09
- The value 32  is transmitted as 00000000 00100000  0x00 0x20
- The value 256 is tranmsitted as 00000001 00000000  0x01 0x00
-
-Note that the higher order byte is stored in the lowest array index so that it is transmitted first. Try switching the array byte order to see the effect it has when the python program reads the bytes and converts them to an integer value.
-
-```
-byte buf[2];
+  ```
+    byte buf[2];
   // transmit higher order byte first, lower order byte second
   buf[1] = count & 0xff;            // low order byte
   buf[0] = (count >> 8) & 0xff;     // higher order byte
   Serial.write(buf, sizeof(buf));
-```
+  ```
+
+Example
+- The value 1   is transmitted as 00000000 00000001  0x00 0x01
+- The value 9   is transmitted as 00000000 00001001  0x00 0x09
+- The value 32  is transmitted as 00000000 00100000  0x00 0x20
+- The value 256 is tranmsitted as 00000001 00000000  0x01 0x00
+
+Instructions
+- Upload the code to the Arduino.
+
+
+
+#### python source code - lesson2a.py
+
+Description
+- The program opens the serial connection to the Arduino. The path "/dev/ttyACM0" is hard-coded in the program. If your path differs, change it before running the program.
+- The program loops for a count of 5
+  - If serial data has been received
+    - read two bytes 
+    - print the bytes in their byte array form (note this is hexadecimal, not binary)
+    - convert the byte array to an unsigned integer
+    - print the unsigned integer value
+
+Instructions
+- Run the program by typing `python3 lesson2b.py` in a terminal command line.
+- Study the program and its output. 
+
+
+![Lesson 2b output](./images/lesson2a_output.png "python lesson 2b output")
+
+
+
+
+> Try switching the Arduino array byte order to see the effect it has when the python program reads the bytes and converts them to an integer value. 
+

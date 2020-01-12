@@ -17,7 +17,7 @@ void setup() {
 
   // default config is 8 data bits, no parity, one stop bit  8N1
   Serial.begin(9600);
-  count = 253;
+  count = 65533;
   delay(100);
 }
 

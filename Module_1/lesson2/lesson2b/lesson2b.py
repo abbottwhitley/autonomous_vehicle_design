@@ -1,7 +1,9 @@
 '''
 Description: illlustrates using serial read function to read two bytes.
 
-The bytes read are printed in byte format and integer hexadecimal format.
+The bytes read are printed in the byte array format and as integers.
+The conversion from byte array to integer assumes big endianness.
+
 '''
 
 import serial
@@ -19,7 +21,7 @@ try:
     timeout  None   (read timeout)
     '''
     ser = serial.Serial(portName)
-    print ("opened port " + ser.name)
+    print ("opened port " + ser.name + '\n')
 
 except serial.SerialException:
         raise IOError("Problem connecting to " + portName)
@@ -36,8 +38,10 @@ while count < 5:
     if(ser.inWaiting() > 1):
         # read will block until 2 bytes are read
         readByte = ser.read(2) 
-        #convert string to hex and then hex to decimal int
-        val = int(readByte.hex(), base=16)
+
+        # big endian byte order means the most significant byte contains the most signifcant bits
+        val = int.from_bytes(readByte, byteorder='big',signed=False)
+
         print('readByte: ', end = '')
         print(readByte)
         print('val:      ', end='')
