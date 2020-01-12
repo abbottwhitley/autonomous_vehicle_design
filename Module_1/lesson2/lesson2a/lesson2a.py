@@ -46,7 +46,9 @@ while count < 10:
         
         print("byte format: ", end = " ")
         print(readByte)
-        print("string object containing hex digits: " + readByte.hex() + '\n')
+        # big endian byte order means the most significant byte contains the most signifcant bits
+        print("int format:  ", int.from_bytes(readByte, byteorder='big',signed=False))
+        print('')  
         count += 1
 
 ser.close()

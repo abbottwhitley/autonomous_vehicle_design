@@ -16,34 +16,47 @@ These examples illustrate how the Arduino Serial.write function transmits data a
 > ##### Parameters
 > Serial: serial port object <br>
 > val: a value to send as a single byte <br>
-> str: a string to send as a series of bytes
-> buf: and array to send as a series of bytes
-> len: the number of bytes to be sent from the array
+> str: a string to send as a series of bytes <br>
+> buf: and array to send as a series of bytes <br>
+> len: the number of bytes to be sent from the array <br>
 
 
 ### Lesson 2a - Arduino transmits a single binary byte value
 
 #### Arduino Source Code - lesson2a.ino
 
-The program serially transmits a single value in the range [0, 255]. 
+Description
+- The program serially transmits a single value in the range [0, 255]. 
+- Serial.write function transmits binary data
 
-Example: 
-    The value 1   is transmitted as 00000001
-    The value 9   is transmitted as 00001001
-    The value 32  is transmitted as 00100000
-    The value 255 is tranmsitted as 11111111
+Examples
+- The value 1   is transmitted as 00000001
+- The value 9   is transmitted as 00001001
+- The value 32  is transmitted as 00100000
+- The value 255 is tranmsitted as 11111111
 
-Upload the code to the Arduino.
+Instructions
+- Upload the code to the Arduino.
+- If you open the Serial monitor program, you may see no output or unexpected characters. The Serial monitor attempts to display the ASCII character representation of the binary value. Many of these values are non-printable characters.
+- The Serial Monitor program must be closed before running the python program.
 
 
 #### python source code - lesson2a.py
 
-The program opens the serial connection to the Arduino. The path "/dev/ttyACM0" is hard-coded in the program. If your path differs, change it before running the program.
+Description
+- The program opens the serial connection to the Arduino. The path "/dev/ttyACM0" is hard-coded in the program. If your path differs, change it before running the program.
+- The program loops for a count of 10
+  - If serial data has been received
+    - read a single byte
+    - print the byte in its byte array form (note this is hexadecimal, not binary)
+    - print the byte in its unsigned integer form
 
-Run the program by typing `python3 lesson2a.py` in a terminal command line.
+Instructions
+- Run the program by typing `python3 lesson2a.py` in a terminal command line.
+- Study the program and its output. 
 
-Study the program and its output. The readByte variable is printed, showing the byte in python's byte format. Note that it is shown in hexadecimal, not binary. 
 
+![Lesson 2a output](./images/lesson2a_output.png "python lesson 2a output")
 
 
 ### Lesson 2b - Arduino transmits multiple binary byte values
