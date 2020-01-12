@@ -12,10 +12,10 @@ These examples illustrate how the Arduino Serial.write function transmits data a
 > Serial.write(val)             
 > Serial.write(str)
 > Serial.write(buf, len)
-
-##### Parameters
-> Serial: serial port object
-> val: a value to send as a single byte
+>
+> ##### Parameters
+> Serial: serial port object <br>
+> val: a value to send as a single byte <br>
 > str: a string to send as a series of bytes
 > buf: and array to send as a series of bytes
 > len: the number of bytes to be sent from the array
