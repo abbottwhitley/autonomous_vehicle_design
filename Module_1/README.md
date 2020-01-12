@@ -1,6 +1,6 @@
 # Module 1 - Serial Communication: Arduino and pySerial
 
-A robot typically contains multiple computational units that exchange state information and control commands. There are many different communication protocols for exchanging data between computer systems. This module focuses on serial communication between an Arduino microcontroller and a general-purpose computer. Data is physically transferred via a universal serial bus (USB) cable.
+>A robot typically contains multiple computational units that exchange state information and control commands. There are many different communication protocols for exchanging data between computer systems. This module focuses on serial communication between an Arduino microcontroller and a general-purpose computer. Data is physically transferred via a universal serial bus (USB) cable.
 
 
 ![Arduino Laptop USB](./images/serialdata.gif "Arduino USB connection to Laptop")
@@ -43,7 +43,7 @@ Serial communication between the Arduino and computer is asynchronous, meaning t
 
 ### Baud Rate and Bit Rate
 
-The bit rate is the number of transmitted bits per second. Baud rate is defined as the number of signal or symbol changes per second. Baud rate differs from bit rate when more than one bit per baud is transmitted. This involves transmitting symbols representing multiple bits in a transmission interval and beyond the scope of this discussion. Just be aware that bit rate and baud rate differ when th number of bits per baud is not 1.
+>The bit rate is the number of transmitted bits per second. Baud rate is defined as the number of signal or symbol changes per second. Baud rate differs from bit rate when more than one bit per baud is transmitted. This involves transmitting symbols representing multiple bits in a transmission interval and beyond the scope of this discussion. Just be aware that bit rate and baud rate differ when th number of bits per baud is not 1.
 
 ```
 Bit rate = Baud rate x number of bit per baud
@@ -97,26 +97,17 @@ The amount of data in each packet can be 5 to 9 bits. The standard data size is 
 
 pySerial is a python package that encapsulates serial port access on a variety of operating systems: Windows,OSX, Linux, and others. PySerial allows data exchange between computers and external hardware via a serial communication interface.
 
-https://pyserial.readthedocs.io/en/latest/pyserial.html
+
+> Installation, https://pyserial.readthedocs.io/en/latest/pyserial.html#installation
+>
+> Ubuntu Linux command line. May require root privileges.
+>
+> For python 2.7: `sudo apt install python-serial`
+> For python3.x: `sudo apt install python3-serial`
 
 
-Installation, https://pyserial.readthedocs.io/en/latest/pyserial.html#installation
 
-Linux command line. May require root privileges.
-
-Ubuntu package versions
-
-For python 2.7: sudo apt install python-serial
-For python3.x: sudo apt install python3-serial
-
-
-From PyPI (python package index)
-
-For python 2.7:   python -m pip install pyserial
-For python 3.x:   python3 -m pip install pyserial
-
-
-To verify the package in installed, start a terminal session by typing python or python3. Then type import serial. If the module is not installed, you will see an error message. Otherwise, you will see the prompt as shown below.  Type quit() to end the session.
+>To verify the package in installed, start a terminal session by typing python or python3. Then type import serial. If the module is not installed, you will see an error message. Otherwise, you will see the prompt as shown below.  Type quit() to end the session.
 
 ![Test Import Serial](./images/test_import_serial.png "Test import serial")
 

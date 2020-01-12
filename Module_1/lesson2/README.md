@@ -5,20 +5,20 @@ These examples illustrate how the Arduino Serial.write function transmits data a
 
 ### Arduino Serial.write()
 
-The Serial.write function writes binary data to the serial port. The data is sent as a byte or a series of bytes.
-
-#### Syntax
-
-Serial.write(val)             
-Serial.write(str)
-Serial.write(buf, len)
+> The Serial.write function writes binary data to the serial port. The data is sent as a byte or a series of bytes.
+>
+> #### Syntax
+>
+> Serial.write(val)             
+> Serial.write(str)
+> Serial.write(buf, len)
 
 ##### Parameters
-Serial: serial port object
-val: a value to send as a single byte
-str: a string to send as a series of bytes
-buf: and array to send as a series of bytes
-len: the number of bytes to be sent from the array
+> Serial: serial port object
+> val: a value to send as a single byte
+> str: a string to send as a series of bytes
+> buf: and array to send as a series of bytes
+> len: the number of bytes to be sent from the array
 
 
 ### Lesson 2a - Arduino transmits a single binary byte value
