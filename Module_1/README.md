@@ -5,7 +5,8 @@ A robot typically requires data transfer between its computer systems. In our ca
 
 ![Arduino Laptop USB](./images/serialdata.gif "Arduino cabled to Laptop")
 
-[Image 1][[1]: https://www.ladyada.net/images/arduino/serialdata.gif
+[Image 1][1]
+[1]: https://www.ladyada.net/images/arduino/serialdata.gif
 
 
 
@@ -15,7 +16,8 @@ Serial communication is the process of sending data one bit at a time, sequentia
 
 ![Serial Example Transmitting One Bit Each Clock Pulse](./images/50e1ccf1ce395f962b000000.png "Serial Example Transmitting One Bit Each Clock Pulse")
 
-[Image 2][2]: https://cdn.sparkfun.com/r/700-700/assets/e/5/4/2/a/50e1ccf1ce395f962b000000.png
+[Image 2][2]
+[2]: https://cdn.sparkfun.com/r/700-700/assets/e/5/4/2/a/50e1ccf1ce395f962b000000.png
 
 
 Serial communication between the Arduino and computer is asynchronous, meaning the devices are not connected by a common clock. It is critical that both devices are configured exactly the same in terms of
@@ -38,7 +40,8 @@ Baud rate = bit rate / number of bit per baud
 
 ![Bit rate versus baud rate](./images/bitversusbaud.jpg "Bit rate versus baud rate")
 
-[Image 3][3]: https://i.ytimg.com/vi/8wm0QlbW9cQ/maxresdefault.jpg 
+[Image 3][3]
+[3]: https://i.ytimg.com/vi/8wm0QlbW9cQ/maxresdefault.jpg 
 
 
 In summary, the baud rate specifies how fast data is sent over a serial line, expressed in the number of signal units per second. We are concerned with bit rate
@@ -69,7 +72,8 @@ The amount of data in each packet can be 5 to 9 bits. The standard data size is 
 
 ![Transmission Packet](./images/start_stop_data_bits.png "Serial Transmission Packet Example")
 
-[Image 4][4]: https://circuitdigest.com/sites/default/files/inlineimages/u1/Synchronous-Serial-Communication.png
+[Image 4][4]
+[4]: https://circuitdigest.com/sites/default/files/inlineimages/u1/Synchronous-Serial-Communication.png
 
 
 
