@@ -3,9 +3,10 @@
 A robot typically requires data transfer between its computer systems. In our case, the system will consist of an Arduino microcontroller and one other computer. The Arduino and computer are physically connected by a universal serial bus (USB) cable. Data may be serially transferred through the cable, allowing a robot's computer system to exchange sensor state information and control commands with the Arduino.
 
 
-![Arduino Laptop USB](./images/serialdata.gif "Arduino cabled to Laptop")
+![Arduino Laptop USB](./images/serialdata.gif "Arduino USB connection to Laptop")
 
 [Image 1][1]
+
 [1]: https://www.ladyada.net/images/arduino/serialdata.gif
 
 
@@ -73,6 +74,7 @@ The amount of data in each packet can be 5 to 9 bits. The standard data size is 
 ![Transmission Packet](./images/start_stop_data_bits.png "Serial Transmission Packet Example")
 
 [Image 4][4]
+
 [4]: https://circuitdigest.com/sites/default/files/inlineimages/u1/Synchronous-Serial-Communication.png
 
 
