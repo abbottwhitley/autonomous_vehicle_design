@@ -73,11 +73,14 @@ The amount of data in each packet can be 5 to 9 bits. The standard data size is 
 
 
 
-## Lesson 1 - Arduino transmits bytes to python program
+## Lesson 1 - Arduino transmits bytes as ASCII characters to python program
 
-Study and run in the examples to understand how the Arduino Serial.println function transmits data, as well as how the python program opens the serial connection and reads byte data.
+Study and run the examples to understand how the Arduino Serial.println function transmits data, as well as how the python program opens the serial connection and reads byte data.
 
 
+## Lesson 2 - Arduino transmits bytes as binary values to python program
+
+Study and run the examples to understand how the Arduino Serial.write function transmits binary data, as well as how the python program reads the binary data.
 
 
 ## Summary
