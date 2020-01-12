@@ -40,10 +40,10 @@ Note that the readUntil function is used to read all bytes received until the ne
     read until an expected sequence is found('\n' by default),
     the size is exceeded or until timeout occurs. With no timeout
     it will block until the requested number of bytes is read
-    '''
+'''
     bytesRead = ser.read_until()
-
 ```
+
 
 **Output**
 
