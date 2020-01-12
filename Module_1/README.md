@@ -5,7 +5,7 @@ A robot typically requires data transfer between its computer systems. In our ca
 
 ![Arduino Laptop USB](./images/serialdata.gif "Arduino USB connection to Laptop")
 
-[Image 1][1]
+[Image 1 reference][1]
 
 [1]: https://www.ladyada.net/images/arduino/serialdata.gif
 
@@ -17,7 +17,8 @@ Serial communication is the process of sending data one bit at a time, sequentia
 
 ![Serial Example Transmitting One Bit Each Clock Pulse](./images/50e1ccf1ce395f962b000000.png "Serial Example Transmitting One Bit Each Clock Pulse")
 
-[Image 2][2]
+[Image 2 reference][2]
+
 [2]: https://cdn.sparkfun.com/r/700-700/assets/e/5/4/2/a/50e1ccf1ce395f962b000000.png
 
 
@@ -41,7 +42,8 @@ Baud rate = bit rate / number of bit per baud
 
 ![Bit rate versus baud rate](./images/bitversusbaud.jpg "Bit rate versus baud rate")
 
-[Image 3][3]
+[Image 3 reference][3]
+
 [3]: https://i.ytimg.com/vi/8wm0QlbW9cQ/maxresdefault.jpg 
 
 
@@ -73,7 +75,7 @@ The amount of data in each packet can be 5 to 9 bits. The standard data size is 
 
 ![Transmission Packet](./images/start_stop_data_bits.png "Serial Transmission Packet Example")
 
-[Image 4][4]
+[Image 4 reference][4]
 
 [4]: https://circuitdigest.com/sites/default/files/inlineimages/u1/Synchronous-Serial-Communication.png
 
