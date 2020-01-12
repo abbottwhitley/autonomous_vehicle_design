@@ -1,15 +1,18 @@
 ### Arduino Source Code - lesson1.ino
 
-The program serially transmits a count value in the range [0, 255]. 
+Description
+- The program serially transmits a count value in the range [0, 255]. 
+- The Serial.println function transmits numbers as ASCII characters, appending a new line character to the end.
 
-The println function transmits numbers as characters, appending a new line character to the end.
+Examples
+- The value 1 is transmitted as '1' '\n'
+- The value 12 is transmitted as '1' '2' '\n'
+- The value 203 is transmitted as '2' '0' '3' '\n'
 
-Example: 
-The value 1 is transmitted as '1' '\n'
-The value 12 is transmitted as '1' '2' '\n'
-The value 203 is transmitted as '2' '0' '3' '\n'
-
-Upload the code to the Arduino.
+Instructions
+- Upload the code to the Arduino. 
+- Open the Arduino serial monitor to verify the program is transmitting data. 
+- Close the serial monitor program. (The python program cannot connect while the serial monitor program is open.)
 
 
 
@@ -26,11 +29,11 @@ Note that the readUntil function is used to read all bytes received until the ne
 ```
 ''' read_until(expected=LF,size=None)
 
-        read until an expected sequence is found('\n' by default),
-        the size is exceeded or until timeout occurs. With no timeout
-        it will block until the requested number of bytes is read
-        '''
-        bytesRead = ser.read_until()
+    read until an expected sequence is found('\n' by default),
+    the size is exceeded or until timeout occurs. With no timeout
+    it will block until the requested number of bytes is read
+    '''
+    bytesRead = ser.read_until()
 
 ```
 
