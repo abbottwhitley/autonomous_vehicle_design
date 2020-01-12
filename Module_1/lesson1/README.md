@@ -1,4 +1,4 @@
-## Lesson 1 - Arduino transmits bytes as ASCII characters to python program
+## Lesson 1 - Arduino transmits bytes as ASCII characters
 
 Objectives
 - Observe behavior of Arduino Serial.println() function
@@ -42,7 +42,7 @@ Instructions
 
 **pySerial readUntil function**
 
-Note that the readUntil function is used to read all bytes received until the newline character is encountered. The function then returns all bytes read as the python type bytes.
+> Note that the readUntil function is used to read all bytes received until the newline character is encountered. The function then returns all bytes read as the python type bytes.
 
 ```
 ''' read_until(expected=LF,size=None)
