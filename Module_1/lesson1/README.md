@@ -1,3 +1,13 @@
+## Lesson 1 - Arduino transmits bytes as ASCII characters to python program
+
+Objectives
+- Observe behavior of Arduino Serial.println() function
+- Learn how to use pySerial readUntil function
+- Learn to convert python byte arrays to numeric values
+
+
+
+
 ### Arduino Source Code - lesson1.ino
 
 Description
@@ -49,7 +59,14 @@ Note that the readUntil function is used to read all bytes received until the ne
 
 The program output is shown below. Note the variable data types and methods of conversion in the program. The bytesRead variable is an array of python bytes. The *b* indicates the type is bytes, followed by the array contents. The program illustrates how to convert the bytes to a unicode string type and an integer type.
 
+The integer value of each byte in the byte array is printed to illustrate it is the ASCII character value.
+
 
 ![Lesson 1 output](./images/lesson1_output.png "python lesson 1 output")
 
 
+**Summary**
+
+Arduino's Serial.println function transmits numeric data as a individual characters and provides a newline character as a delimiter marking the end of transmission.
+
+The python program uses pySerial's readUntil function to read bytes received, using the new line character delimiter to recognize the end of the string of transmitted characters.

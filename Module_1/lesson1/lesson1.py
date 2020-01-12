@@ -50,7 +50,6 @@ while count < 5:
         serialStr = bytesRead.decode().strip()   # decode default is 'utf-8'
 
         # convert byte string to int, remove leading and trailing whitespace
-        # seems to work without calling strip as we only have trailing whitespace
         intVal = int(bytesRead.strip())
 
 
@@ -71,8 +70,13 @@ while count < 5:
         print('intVal:    ', end='')
         print(intVal)
         print('')
-        
 
+        # to illustrate the byte array contains the ASCII value of each character
+        print("Printing integer values of byte array elements")
+        for b in bytesRead:
+            print(b, end=' ')
+
+        print('\n')
         
         count += 1
 
