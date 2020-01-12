@@ -5,45 +5,33 @@
     The byte data read is printed.
 '''
 import serial
-import serial.tools.list_ports 
+from time import sleep
+
 
 # change the path name to match your system
 portName = '/dev/ttyACM0'
 
-
-# List all connected serial com ports
-ports = list(serial.tools.list_ports.comports())
-
-print("Printing port list\n")
-
-for p in ports:
-    print("device: " + p.device)
-    print("device path: " + p.device_path)
-    print("description: " + p.description)
-    print("manufactuer: " + p.manufacturer)
-    print("serial number: " + p.serial_number + '\n')
-
-
-''' Construct a serial object with default arguments
+try:
+    ''' 
+    Construct a serial object with default arguments
     baudrate 9600
     bytesize 8 bits
     parity   None
     stopbits 1
     timeout  None   (read timeout)
-'''
-ser = serial.Serial(portName)
-
-'''
-The else branch below will likely never be reached. If the port failed to open in the
-previous statement, the program will have stopped execution and produced an error message.
-
-The is_open check is not required, but provides an example of checking the object's open property
-'''
-if ser.is_open:
+    '''
+    ser = serial.Serial(portName)
     print ("opened port " + ser.name + '\n')
-else: # else condition will likely never be reached
-    print ("serial open failed, " + portName)
-    exit
+
+except serial.SerialException:
+        raise IOError("Problem connecting to " + portName)
+
+# sleep short time to ensure port is open
+sleep(50/1000)
+
+# flush input buffer, discarding all contents
+ser.reset_input_buffer()
+
 
 # loop a few times to illustrate data received
 count = 0
@@ -63,20 +51,27 @@ while count < 5:
 
         # convert byte string to int, remove leading and trailing whitespace
         # seems to work without calling strip as we only have trailing whitespace
-        val = int(bytesRead.strip())
+        intVal = int(bytesRead.strip())
+
 
         # print data types just once
         if count == 0:
             print("Data Types")
+            print("bytesRead: ", end='')
             print(type(bytesRead))
+            print("serialStr: ", end='')
             print(type(serialStr))
-            print(type(val))
-            print('\n')
+            print("intVal: ", end='')
+            print(type(intVal))
+            print('')
 
         # print data in its various forms
         print('bytesRead: ' + str(bytesRead))
-        print('unicode:   ' + serialStr)
-        print('val:       ' + str(val) + '\n')
+        print('serialStr: ' + serialStr)
+        print('intVal:    ', end='')
+        print(intVal)
+        print('')
+        
 
         
         count += 1

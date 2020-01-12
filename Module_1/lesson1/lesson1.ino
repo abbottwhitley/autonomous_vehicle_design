@@ -1,4 +1,4 @@
-/* Serial Transmit Example 1: Transmits a count in the range [0,255] with
+/* Serial Transmit Lesson 1: Transmits a count in the range [0,255] with
  *  the println command.
  *  
  *  print transmits numbers using an ASCII character for each digit

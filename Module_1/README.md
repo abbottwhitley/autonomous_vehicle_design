@@ -1,6 +1,6 @@
-# Module 1 - Serial Communication Between Arduino and Another Computer
+# Module 1 - Serial Communication: Arduino and pySerial
 
-A robot typically requires data transfer between its computer systems. In our case, the system will consist of an Arduino microcontroller and one other computer. The Arduino and computer are physically connected by a universal serial bus (USB) cable. Data may be serially transferred through the cable, allowing a robot's computer system to exchange sensor state information and control commands with the Arduino.
+A robot typically contains multiple computational units that exchange state information and control commands. There are many different communication protocols for exchanging data between computer systems. This module focuses on serial communication between an Arduino microcontroller and a general-purpose computer. Data is physically transferred via a universal serial bus (USB) cable.
 
 
 ![Arduino Laptop USB](./images/serialdata.gif "Arduino USB connection to Laptop")
@@ -8,6 +8,18 @@ A robot typically requires data transfer between its computer systems. In our ca
 [Image 1 reference][1]
 
 [1]: https://www.ladyada.net/images/arduino/serialdata.gif
+
+
+
+
+
+Learning Objectives
+- Use python to communicate with external hardware using a serial communication protocol interface
+- Arduino Serial library
+   - Understand difference between print and write functions
+- pySerial library
+   - Difference between read and readuntil 
+
 
 
 
@@ -79,6 +91,39 @@ The amount of data in each packet can be 5 to 9 bits. The standard data size is 
 
 [4]: https://circuitdigest.com/sites/default/files/inlineimages/u1/Synchronous-Serial-Communication.png
 
+
+
+## pySerial
+
+pySerial is a python package that encapsulates serial port access on a variety of operating systems: Windows,OSX, Linux, and others. PySerial allows data exchange between computers and external hardware via a serial communication interface.
+
+https://pyserial.readthedocs.io/en/latest/pyserial.html
+
+
+Installation, https://pyserial.readthedocs.io/en/latest/pyserial.html#installation
+
+Linux command line. May require root privileges.
+
+Ubuntu package versions
+
+For python 2.7: sudo apt install python-serial
+For python3.x: sudo apt install python3-serial
+
+
+From PyPI (python package index)
+
+For python 2.7:   python -m pip install pyserial
+For python 3.x:   python3 -m pip install pyserial
+
+
+To verify the package in installed, start a terminal session by typing python or python3. Then type import serial. If the module is not installed, you will see an error message. Otherwise, you will see the prompt as shown below.  Type quit() to end the session.
+
+![Test Import Serial](./images/test_import_serial.png "Test import serial")
+
+
+## Lesson 0 - Python program lists connected serial devices
+
+This example illustrates how to list device information for connnected com ports. It is for your information only and not required to open a serial connection.
 
 
 ## Lesson 1 - Arduino transmits bytes as ASCII characters to python program

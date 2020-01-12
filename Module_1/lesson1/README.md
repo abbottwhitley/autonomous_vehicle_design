@@ -19,11 +19,25 @@ The program opens the serial connection to the Arduino. The path "/dev/ttyACM0" 
 
 Run the program by typing `python3 lesson1.py` in a terminal command line.
 
-Study the program and its output. The bytesRead variable shows the list of bytes read and illustrates how to convert the bytes to a unicode string type and an integer type.
+Study the program and its output. 
+
+Note that the readUntil function is used to read all bytes received until the newline character is encountered. The function then returns all bytes read as the python type bytes.
+
+```
+''' read_until(expected=LF,size=None)
+
+        read until an expected sequence is found('\n' by default),
+        the size is exceeded or until timeout occurs. With no timeout
+        it will block until the requested number of bytes is read
+        '''
+        bytesRead = ser.read_until()
+
+```
 
 
+The program output is shown below. Note the variable data types and methods of conversion in the program. The bytesRead variable is an array of python bytes. The b indicates the type is bytes, followed by the array contents. The program illustrates how to convert the bytes to a unicode string type and an integer type.
 
-### python dependencies
-The pyserial module must be installed. 
 
-`sudo apt-get install python3-serial`
+![Lesson 1 output](./images/lesson1_output.png "python lesson 1 output")
+
+
