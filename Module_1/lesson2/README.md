@@ -92,14 +92,17 @@ Description
   Serial.write(buf, sizeof(buf));
   ```
 <br>
+
 Example
 - The value 1   is transmitted as 00000000 00000001  0x00 0x01
 - The value 9   is transmitted as 00000000 00001001  0x00 0x09
 - The value 32  is transmitted as 00000000 00100000  0x00 0x20
 - The value 256 is tranmsitted as 00000001 00000000  0x01 0x00
+
 <br>
 Instructions
 - Upload the code to the Arduino.
+
 <br>
 <br>
 
