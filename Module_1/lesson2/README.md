@@ -55,7 +55,7 @@ Description
 Instructions
 - Run the program by typing `python3 lesson2a.py` in a terminal command line.
 - Study the program and its output. 
-
+<br>
 **pySerial read function**
 > read(size=1) 
     > Parameters: size - number of bytes to read
@@ -65,7 +65,8 @@ Instructions
     > If a timeout is set it may return less characters as requested. With no timeout it will block until the requested number of bytes is read.
   
 <br>
-#### Example Output
+####Example Output
+<br>
 
 ![Lesson 2a output](./images/lesson2a_output.png "python lesson 2a output")
 

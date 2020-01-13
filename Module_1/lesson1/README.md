@@ -40,7 +40,6 @@ Instructions
 - Study the program and its output. 
 
 <br>
-<br>
 
 **pySerial readUntil function**
 
