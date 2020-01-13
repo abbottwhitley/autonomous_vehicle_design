@@ -121,6 +121,7 @@ Instructions
 
 #### Lesson 2b Example Output
 <br>
+
 ![Lesson 2b output](./images/lesson2a_output.png "python lesson 2b output")
 
 <br>
