@@ -1,7 +1,7 @@
 ## Lesson 2 - Binary Transmission & Reception
 
 These examples illustrate how the Arduino Serial.write function transmits data as binary values.
-
+<br>
 
 ### Arduino Serial.write()
 
@@ -20,6 +20,7 @@ These examples illustrate how the Arduino Serial.write function transmits data a
 > buf: and array to send as a series of bytes <br>
 > len: the number of bytes to be sent from the array <br>
 
+<br>
 
 ### Lesson 2a - Arduino transmits a single binary byte value
 
@@ -39,7 +40,7 @@ Instructions
 - Upload the code to the Arduino.
 - If you open the Serial monitor program, you may see no output or unexpected characters. The Serial monitor attempts to display the ASCII character representation of the binary value. Many of these values are non-printable characters.
 - The Serial Monitor program must be closed before running the python program.
-
+<br>
 
 #### python source code - lesson2a.py
 
@@ -55,6 +56,16 @@ Instructions
 - Run the program by typing `python3 lesson2a.py` in a terminal command line.
 - Study the program and its output. 
 
+**pySerial read function**
+> read(size=1) 
+    > Parameters: size - number of bytes to read
+    > returns bytes read from the port
+    > return type: bytes
+>
+    > If a timeout is set it may return less characters as requested. With no timeout it will block until the requested number of bytes is read.
+  
+<br>
+#### Example Output
 
 ![Lesson 2a output](./images/lesson2a_output.png "python lesson 2a output")
 
