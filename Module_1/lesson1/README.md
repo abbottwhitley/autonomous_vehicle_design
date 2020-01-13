@@ -5,8 +5,9 @@ Objectives
 - Learn how to use pySerial readUntil function
 - Learn to convert python byte arrays to numeric values
 
-
-
+<br>
+<br>
+<br>
 
 ### Arduino Source Code - lesson1.ino
 
@@ -24,7 +25,9 @@ Instructions
 - Open the Arduino serial monitor to verify the program is transmitting data. 
 - Close the serial monitor program. (The python program cannot connect while the serial monitor program is open.)
 
-
+<br>
+<br>
+<br>
 
 ### python source code - lesson1.py
 
@@ -38,7 +41,8 @@ Instructions
 - Run the program by typing `python3 lesson1.py` in a terminal command line.
 - Study the program and its output. 
 
-
+<br>
+<br>
 
 **pySerial readUntil function**
 
@@ -50,10 +54,20 @@ Instructions
     read until an expected sequence is found('\n' by default),
     the size is exceeded or until timeout occurs. With no timeout
     it will block until the requested number of bytes is read
+
+    Returns bytes read from the port
+    Return type: bytes
 '''
     bytesRead = ser.read_until()
 ```
+<br>
+<br>
 
+**python bytes objects**
+> Bytes objects are an immutable sequence of single bytes. bytes representations are based on ASCII text, with each value in the sequence restricted to the integer range [0,255].
+
+<br>
+<br>
 
 **Output**
 
@@ -61,8 +75,13 @@ Instructions
 >
 > The integer value of each byte in the byte array is printed to illustrate it is the ASCII character value.
 
+<br>
+<br>
 
 ![Lesson 1 output](./images/lesson1_output.png "python lesson 1 output")
+
+<br>
+<br>
 
 
 **Summary**

@@ -2,6 +2,8 @@
 
 >A robot typically contains multiple computational units that exchange state information and control commands. There are many different communication protocols for exchanging data between computer systems. This module focuses on serial communication between an Arduino microcontroller and a general-purpose computer. Data is physically transferred via a universal serial bus (USB) cable.
 
+<br>
+<br>
 
 ![Arduino Laptop USB](./images/serialdata.gif "Arduino USB connection to Laptop")
 
@@ -9,18 +11,20 @@
 
 [1]: https://www.ladyada.net/images/arduino/serialdata.gif
 
+<br>
+<br>
 
-
-
-
-Learning Objectives
+**Learning Objectives**
 - Use python to communicate with external hardware using a serial communication protocol interface
 - Arduino Serial library
    - Understand difference between print and write functions
 - pySerial library
-   - Difference between read and readuntil 
+   - Open serial port connection
+   - Read single and multiple byte data using read and readuntil functions
+   - Convert byte objects to numeric data types
 
-
+<br>
+<br>
 
 
 ## Serial Communication
