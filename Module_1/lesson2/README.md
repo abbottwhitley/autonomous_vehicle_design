@@ -84,6 +84,7 @@ Description
 - The Serial.write(buf,len) function transmits the data as a series of bytes.
   - The unsigned int must be converted into individual bytes and stored in an array. The higher order byte is stored in the first array element, index position 0. The lower order byte is stored in array index 1.
   <br>
+
   ```
   byte buf[2];
   // transmit higher order byte first, lower order byte second
@@ -91,6 +92,7 @@ Description
   buf[0] = (count >> 8) & 0xff;     // higher order byte
   Serial.write(buf, sizeof(buf));
   ```
+
 <br>
 
 Example
