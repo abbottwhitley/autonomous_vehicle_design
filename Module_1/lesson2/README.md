@@ -58,11 +58,14 @@ Instructions
 <br>
 
 **pySerial read function**
-> read(size=1) 
->> Parameters: size - number of bytes to read
->> returns bytes read from the port
->> return type: bytes
->> If a timeout is set it may return less characters as requested. With no timeout it will block until the requested number of bytes is read.
+> read(size=1)
+> 
+> Parameters: size - number of bytes to read
+>
+> returns bytes read from the port
+> return type: bytes
+>
+> If a timeout is set it may return less characters as requested. With no timeout it will block until the requested number of bytes is read.
   
 <br>
 
