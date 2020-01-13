@@ -7,7 +7,6 @@ Objectives
 
 <br>
 <br>
-<br>
 
 ### Arduino Source Code - lesson1.ino
 
@@ -25,7 +24,6 @@ Instructions
 - Open the Arduino serial monitor to verify the program is transmitting data. 
 - Close the serial monitor program. (The python program cannot connect while the serial monitor program is open.)
 
-<br>
 <br>
 <br>
 
@@ -61,12 +59,10 @@ Instructions
     bytesRead = ser.read_until()
 ```
 <br>
-<br>
 
 **python bytes objects**
 > Bytes objects are an immutable sequence of single bytes. bytes representations are based on ASCII text, with each value in the sequence restricted to the integer range [0,255].
 
-<br>
 <br>
 
 **Output**
@@ -75,7 +71,6 @@ Instructions
 >
 > The integer value of each byte in the byte array is printed to illustrate it is the ASCII character value.
 
-<br>
 <br>
 
 ![Lesson 1 output](./images/lesson1_output.png "python lesson 1 output")
