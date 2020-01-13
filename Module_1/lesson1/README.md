@@ -3,7 +3,7 @@
 Objectives
 - Observe behavior of Arduino Serial.println() function
 - Learn how to use pySerial readUntil function
-- Learn to convert python byte arrays to numeric values
+- Learn to convert python byte arrays to string and numeric values
 
 <br>
 <br>
@@ -52,6 +52,10 @@ Instructions
     read until an expected sequence is found('\n' by default),
     the size is exceeded or until timeout occurs. With no timeout
     it will block until the requested number of bytes is read
+
+    Parameters:
+    - expected - the byte string to search for
+    - size - number of bytes to read
 
     Returns bytes read from the port
     Return type: bytes
