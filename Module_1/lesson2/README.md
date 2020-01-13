@@ -59,11 +59,10 @@ Instructions
 
 **pySerial read function**
 > read(size=1) 
-    > Parameters: size - number of bytes to read
-    > returns bytes read from the port
-    > return type: bytes
->
-    > If a timeout is set it may return less characters as requested. With no timeout it will block until the requested number of bytes is read.
+>> Parameters: size - number of bytes to read
+>> returns bytes read from the port
+>> return type: bytes
+>> If a timeout is set it may return less characters as requested. With no timeout it will block until the requested number of bytes is read.
   
 <br>
 
@@ -75,7 +74,6 @@ Instructions
 <br>
 
 ### Lesson 2b - Arduino transmits an array of binary byte values
-<br>
 
 #### Arduino source code - lesson2b.ino
 
