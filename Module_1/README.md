@@ -111,7 +111,8 @@ pySerial is a python package that encapsulates serial port access on a variety o
 
 ![Test Import Serial](./images/test_import_serial.png "Test import serial")
 
-
+<br>
+<br>
 ## Lesson 0 - Python program lists connected serial devices
 
 This example illustrates how to list device information for connnected com ports. It is for your information only and not required to open a serial connection.
@@ -126,7 +127,8 @@ Study and run the examples to understand how the Arduino Serial.println function
 
 Study and run the examples to understand how the Arduino Serial.write function transmits binary data, as well as how the python program reads the binary data.
 
-
+<br>
+<br>
 ## Summary
 
 >Serial communication between an Arduino and another computer provides 
