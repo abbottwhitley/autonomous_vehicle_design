@@ -23,13 +23,14 @@ Install MPU6050 by ELectronic Cats
 
 ![Arduino Library Manager MPU6050](./images/arduino_library_manager_mpu6050.png "Arduino Library Manager")
 
+
 ## Arduino Source Code
 
-1. Write an MPU-6050 Library for Arduino.
+1. Open the MPU6050_raw example sketch
    a. The library may consist of C-style functions or a C++ class. 
    b. An Arduino library requires at least two files:
       i.  header file  (.h)
       ii. source file (.cpp)
-   c. Refer to [Writing a Library for Arduino](https://www.arduino.cc/en/Hacking/libraryTutorial)
+   c. Refer to [ElectronicCats/mpu6050 repository](https://github.com/ElectronicCats/mpu6050)
 
-2. Use the Arduino Wire Library for I2C communication
+2. 
