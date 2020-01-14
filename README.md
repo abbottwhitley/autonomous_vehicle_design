@@ -1,6 +1,6 @@
 # Course Title: Autonomous Vehicle Design
 > University of Colorado Denver Special Topics Class, Spring 2020
-> Listed as ELEC 4804 001, ELEC 5804 001, MECH 4228 001, MECH 5228 001
+Listed as ELEC 4804 001, ELEC 5804 001, MECH 4228 001, MECH 5228 001
 
 <br>
 
