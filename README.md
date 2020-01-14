@@ -1,6 +1,6 @@
 # Course Title: Autonomous Vehicle Design
-> University of Colorado Denver Special Topics Class, Spring 2020
-Listed as ELEC 4804 001, ELEC 5804 001, MECH 4228 001, MECH 5228 001
+> University of Colorado Denver Special Topics Class, Spring 2020 <br>
+> Listed as ELEC 4804 001, ELEC 5804 001, MECH 4228 001, MECH 5228 001
 
 <br>
 
@@ -41,6 +41,11 @@ ELEC 2520 or MECH 3032. Graduate students who have not completed these undergrad
 
 ### Programming Languages
 Assignments will require python and C/C++ programming. Prior experience with these languages is not required, but will require extra effort to learn the language syntax.
+
+<br>
+
+### Linux Operating System
+Prior experience with a Linux operating system is recommended but not required. Ubuntu 18.04 will be running in the classroom. The robot's main computer will also be a Linux-based computer, most likely running a version of Ubuntu. 
 
 <br>
 
