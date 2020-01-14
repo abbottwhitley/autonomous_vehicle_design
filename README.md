@@ -5,18 +5,32 @@
 <br>
 
 ### Course Description
-The course is designed as an introduction to autonomous mobile robotics. Each student will create a self-balancing robot that can avoid obstacles and recognize simple objects. The class is broken down into separate modules designed to learn and implement the required concepts. This building block approach is designed to aid student success in creating a working robot.
+The course is designed as an introduction to autonomous mobile robotics. Each student will create a self-balancing robot that can avoid obstacles and recognize simple objects. The class is broken down into separate modules to enable students to learn individual concepts and then integrate them into a robotic system. This building block approach is designed to aid student success in creating a working robot.
 
 <br>
 
-### Course Topics
+### Course Overview
+
+An autonomous mobile robot must have the appropriate sensing capabilities and intelligence to navigate through its environment and perform its designated tasks. The robot must avoid collisions and unsafe environmental conditions. Navigation requires the robot to know its location, its destination, and how to get there. More formally, these are known as localization, goal setting, and path planning. 
+
+Localization is the robot's ability to establish its position and orientation within a frame of reference. Localization and path-planning are based on a map of the environment. A map is created from a robot's perceptual and inertial sensors. 
+
+There are many considerations for the robot's physical systems. Robots that perform tasks humans consider easy are very complex systems. The chosen robot design for this course is based on the expectation that students are relatively new to autonomous mobile robotics, but have some experience with embedded systems and programming. Even though this is a first course in the study of autononmous mobile robotics, topics from fields such as kinematics, control theory, signal processing, computer vision, software design, and systems integration will be needed to achieve a functional robot.
+
+This course will not cover more advanced topics related to localization, mapping, path-planning, and artificial intelligence. These topics are the subject of a future course.
+
+<br>
+
+### General Course Topics
+
 - Sensing, actuation, and locomotion
 - PID Control
-- Velocity Control
 - Data Visualization
 - Obstace Avoidance
 - Computer Vision 
 - Telemetry
+- System Integration
+- Design Tradeoffs
 
 <br>
 
