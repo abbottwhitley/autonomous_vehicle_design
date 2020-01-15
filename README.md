@@ -17,7 +17,7 @@ Localization is the robot's ability to establish its position and orientation wi
 
 There are many considerations for the robot's physical systems. Robots that perform tasks humans consider easy are very complex systems. The chosen robot design for this course is based on the expectation that students are relatively new to autonomous mobile robotics, but have some experience with embedded systems and programming. Even though this is a first course in the study of autononmous mobile robotics, topics from fields such as kinematics, control theory, signal processing, computer vision, software design, and systems integration will be needed to achieve a functional robot.
 
-This course will not cover more advanced topics related to localization, mapping, path-planning, and artificial intelligence. These topics are the subject of a future course.
+This course builds a robot from the ground-up, requiring significant time spent learning how to work with inertial measurment sensors, obstacle detection sensors, motor control, systems integration, telemtry communication (to know what the robot is thinking), and data visualization. There is not time to cover more advanced topics related to localization, mapping, path-planning, and artificial intelligence. These topics are the subject of a future course.
 
 <br>
 
@@ -26,7 +26,7 @@ This course will not cover more advanced topics related to localization, mapping
 - Sensing, actuation, and locomotion
 - PID Control
 - Data Visualization
-- Obstace Avoidance
+- Obstacle Avoidance
 - Computer Vision 
 - Telemetry
 - System Integration
