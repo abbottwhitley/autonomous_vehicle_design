@@ -39,10 +39,14 @@ if __name__ == '__main__':
 
 #### htop output
 
-![htop output](../images/htop_output.png "htop shows 100% cpu usage") <br>
+![htop output](./images/htop_output.png "htop shows 100% cpu usage") 
+
+<br>
 
 #### lesson 4 output
 
-![lesson 4 output](../images/lesson4_output.png "catching ctrl+c") <br>
+![lesson 4 output](./images/lesson4_output.png "catching ctrl+c") 
+
+<br>
 
 
