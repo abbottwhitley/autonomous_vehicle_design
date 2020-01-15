@@ -34,10 +34,14 @@ if __name__ == '__main__':
 
 - Run the program `python3 lesson4.py`
 - Open another terminal window and type `htop` to view cpu usage. You will see 100% cpu usage by the infinite loop.
+    - You may need to install htop first: `sudo apt-get install htop`
 - Type ctrl+c to end the program.
 
+<br>
 
 #### htop output
+
+htop is a system monitoring utility. The image below shows 100% cpu usage for the process thread running lesson4.py.
 
 ![htop output](./images/htop_output.png "htop shows 100% cpu usage") 
 
@@ -48,5 +52,3 @@ if __name__ == '__main__':
 ![lesson 4 output](./images/lesson4_output.png "catching ctrl+c") 
 
 <br>
-
-
