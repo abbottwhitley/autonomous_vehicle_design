@@ -106,7 +106,7 @@ pySerial is a python package that encapsulates serial port access on a variety o
 >
 > Ubuntu Linux command line. May require root privileges.
 >
-> For python 2.7: `sudo apt install python-serial`
+> For python 2.7: `sudo apt install python-serial`<br>
 > For python3.x: `sudo apt install python3-serial`
 
 
