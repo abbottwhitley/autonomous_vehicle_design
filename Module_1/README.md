@@ -125,12 +125,34 @@ This example illustrates how to list device information for connnected com ports
 
 ## Lesson 1 - Arduino transmits bytes as ASCII characters to python program
 
+Lesson 1 demonstrates how Arduino's Serial.println function transmits data as ASCII characters. The python receiving program utilizes pySerial's readuntil function to recognize when the entire data message has been received.
+
 Study and run the examples to understand how the Arduino Serial.println function transmits data, as well as how the python program opens the serial connection and reads byte data.
 
 
 ## Lesson 2 - Arduino transmits bytes as binary values to python program
 
+Lesson 2 illustrates how to transmit single and multiple byte integers from Arduino to a python program. The python examples demonstrate how the data is natively received and then converted to the correct integer data value.
+
 Study and run the examples to understand how the Arduino Serial.write function transmits binary data, as well as how the python program reads the binary data.
+
+## Lesson 3 - python transmits and receives bytes to/from Arduino
+
+Lesson 3  shows how to transmit one data message from python to Arduino. 
+
+Study and run the examples to understand how python's pySerial write function works, along with Arduino Serial.readStringUntil function.
+
+## Lesson 4 - Handling Ctrl+C signal interrupt
+
+This example illustrates how to handle an asynchronous signal interrupt to gracefully exit from a program.
+
+## Lesson 5 - Arduino transmits random xy values to python
+
+This lesson illustrates how to send multiple data values from Arduino to python. Encoding the message with delimiters aids in extracting the received information. The Serial.print functions are used to transmit data as ASCII characters. The delimiters were necessary as the length of x and y values varied from 1 to 3 digit values.
+
+This example also demonstrates how to use the Arduino milliseconds timer to control tasks with different timing requirements.
+
+The lesson combines signal interrupt handling with an infinite loop, allowing the program to exit gracefully, closing the serial connection before terminating.
 
 <br>
 <br>
@@ -141,11 +163,4 @@ Study and run the examples to understand how the Arduino Serial.write function t
 >- Arduino State Information
 >- Transmission of control commands from computer to Arduino
 >
-> Lesson 1 illustrated how Arduino's Serial.println function transmits data as ASCII characters. The python receiving program utilizes pySerial's readuntil function to recognize when the entire data message has been received.
->
-> Lesson 2 illustrated how to transmit single and multiple byte integers from Arduino to a python program. The python examples demonstrate how the data is natively received and then converted to the correct integer data value.
->
-> Both lesson 1 and lesson 2 are simple forms of serial communication. The python serial port connection was configured with no read timeout, meaning that all read functions will block (not return) until data is read. Often, this is not practical, as more complex programs cannot sit and wait forever for a function to return. Timeout values are determined, based on hardware and software requirements. When a read or write function may return due to a timeout, the program must then track how much data has sent and received. When multiple bytes are involved, we must design our messages so that an application may recognize the start and end of a message.
-> 
-
-
+> These lessons progress from simple to more complex forms of serial communication. Default values were used to configure the serial port in most examples. The python serial port connection was configured with no read timeout, meaning that all read functions will block (not return) until data is read. Often, this is not practical, as more complex programs cannot sit and wait forever for a function to return. Timeout values are determined, based on hardware and software requirements. When a read or write function may return due to a timeout, the program must then track how much data has sent and received. When multiple bytes are involved, we must design our messages so that an application may recognize the start and end of a message.
