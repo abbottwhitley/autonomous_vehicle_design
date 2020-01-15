@@ -42,7 +42,7 @@ Return type: int
 Write the bytes data to the port. data should be of type bytes or bytearray.
 Unicode strings must be encoded (e.g. 'hello',encode('utf-8'))
 '''
-print("transmitting: ", end='')
+print('transmitting: ', end ='')
 print(sendMsg)
 bytesWritten = ser.write(sendMsg)
 
