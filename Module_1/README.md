@@ -128,13 +128,14 @@ This example illustrates how to list device information for connnected com ports
 Lesson 1 demonstrates how Arduino's Serial.println function transmits data as ASCII characters. The python receiving program utilizes pySerial's readuntil function to recognize when the entire data message has been received.
 
 Study and run the examples to understand how the Arduino Serial.println function transmits data, as well as how the python program opens the serial connection and reads byte data.
-
+<br>
 
 ## Lesson 2 - Arduino transmits bytes as binary values to python program
 
 Lesson 2 illustrates how to transmit single and multiple byte integers from Arduino to a python program. The python examples demonstrate how the data is natively received and then converted to the correct integer data value.
 
 Study and run the examples to understand how the Arduino Serial.write function transmits binary data, as well as how the python program reads the binary data.
+<br>
 
 ## Lesson 3 - python transmits and receives bytes to/from Arduino
 
@@ -145,6 +146,7 @@ Study and run the examples to understand how python's pySerial write function wo
 ## Lesson 4 - Handling Ctrl+C signal interrupt
 
 This example illustrates how to handle an asynchronous signal interrupt to gracefully exit from a program.
+<br>
 
 ## Lesson 5 - Arduino transmits random xy values to python
 
