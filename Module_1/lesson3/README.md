@@ -52,4 +52,4 @@ Instructions
 
 **Summary**
 
-> This lesson illustrated how to send data from python to Arduino. Lesson 5 will introduce how to send multiple transmissions from python to Arduino. The python program will require an infinite loop. When running a program with an infinite loop, one of the only ways to stop it is by pressing CTRL+C. That stops the program, but does not let the program exit gracefully by performing necessary tasks such as closing the open port connection. Lesson 4 will teach you how to handle a CTRL+C signal interrupt before integrating that into lesson 5.
+> This lesson illustrated how to send data from python to Arduino. Lesson 5 will introduce how to send multiple transmissions from python to Arduino. The python program will require an infinite loop. When running a program with an infinite loop, one of the only ways to stop it is by pressing CTRL+C. That stops the program, but it does not let the program exit gracefully, by performing necessary tasks such as closing the open port connection. Lesson 4 will teach you how to handle a CTRL+C signal interrupt before integrating that into lesson 5.

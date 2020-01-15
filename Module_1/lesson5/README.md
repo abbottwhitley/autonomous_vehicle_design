@@ -1,4 +1,4 @@
-## ## Lesson 5 - Arduino transmits random xy values to python
+## Lesson 5 - Arduino transmits random xy values to python
 
 Objectives
 - Learn how to use Arduino timers to execute tasks with different delay intervals
