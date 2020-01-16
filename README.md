@@ -55,3 +55,22 @@ For those who do not know the python language, part I, chapters 1-11, are recomm
 [Python Crash Course, 2nd Edition: A Hands-On, Project-Based Introduction to Programming by Eric Mathes]( https://www.amazon.com/Python-Crash-Course-2nd-Edition/dp/1593279280)
 
 
+
+### Hardware
+
+Elegoo Tumbller Self-Balancing robot kit <br>
+
+![Elegroo Tumbller](./images/elegoo_kit.jpg "Elegoo Tumbller")
+
+<br>
+
+Raspberry Pi 4 Model B (4GB ram) kit <br>
+
+![Raspberry Pi 4](./images/raspberry_pi_kit.jpg "Raspberry pi 4 kit")
+
+<br>
+
+Raspberry pi 4 camera
+
+![Raspberry pi camera](./images/pi_camera.jpg "Raspberry pi camera")
+
