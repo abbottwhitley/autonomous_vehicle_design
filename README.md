@@ -5,19 +5,19 @@
 <br>
 
 ### Course Description
-The course is designed as an introduction to autonomous mobile robotics. Each student will create a self-balancing robot that can avoid obstacles and recognize simple objects. The class is broken down into separate modules to enable students to learn individual concepts and then integrate them into a robotic system. This building block approach is designed to aid student success in creating a working robot.
+The course is designed as an introduction to autonomous mobile robotics. Each student will create a self-balancing robot that can avoid obstacles and recognize simple objects. The class is broken down into separate modules to enable students to learn core concepts and then integrate them into a robotic system. This building block approach is designed to aid student success in creating a working robot.
 
 <br>
 
 ### Course Overview
 
-An autonomous mobile robot must have the appropriate sensing capabilities and intelligence to navigate through its environment and perform its designated tasks. The robot must avoid collisions and unsafe environmental conditions. Navigation requires the robot to know its location, its destination, and how to get there. More formally, these are known as localization, goal setting, and path planning. 
+An autonomous mobile robot must have the appropriate sensing capabilities and intelligence to navigate through its environment and perform its designated tasks. The robot must avoid collisions and unsafe environmental conditions. Navigation requires the robot to know its location, its destination, and how to get there. More formally, these are known as localization, goal setting, and path planning.  
 
-Localization is the robot's ability to establish its position and orientation within a frame of reference. Localization and path-planning are based on a map of the environment. A map is created from a robot's perceptual and inertial sensors. 
+Localization is the robot's ability to establish its position and orientation within a frame of reference. Localization and path-planning are based on a map of the environment. A map is created from a robot's perceptual and inertial sensors.  
 
-There are many considerations for the robot's physical systems. Robots that perform tasks humans consider easy are very complex systems. The chosen robot design for this course is based on the expectation that students are relatively new to autonomous mobile robotics, but have some experience with embedded systems and programming. Even though this is a first course in the study of autononmous mobile robotics, topics from fields such as kinematics, control theory, signal processing, computer vision, software design, and systems integration will be needed to achieve a functional robot.
+There are many considerations for designing a robot's physical systems. The chosen robot design for this course is based on the expectation that students are relatively new to autonomous mobile robotics, but have some experience with embedded systems and programming.  Relevant topics from fields such as kinematics, control theory, signal processing, computer vision, software design, and systems integration will be discussed. 
 
-This course builds a robot from the ground-up, requiring significant time spent learning how to work with inertial measurment sensors, obstacle detection sensors, motor control, systems integration, telemtry communication (to know what the robot is thinking), and data visualization. There is not time to cover more advanced topics related to localization, mapping, path-planning, and artificial intelligence. These topics are the subject of a future course.
+This course builds a robot from the ground-up, requiring significant time spent learning how to work with inertial measurement sensors, obstacle detection sensors, motor control, systems integration, telemetry communication, simulation, and data visualization. Advanced concepts such as localization, mapping, path-planning, and machine learning are not covered, due to time constraints. These topics are the subject of a future course. 
 
 <br>
 
