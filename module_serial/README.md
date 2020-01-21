@@ -135,47 +135,47 @@ pySerial is a python package that encapsulates serial port access on a variety o
 
 ### **Lesson 0 - Python program lists connected serial devices**
 
-This example illustrates how to list device information for connnected com ports. It is for your information only and not required to open a serial connection. 
+>This example illustrates how to list device information for connnected com ports. It is for your information only and not required to open a serial connection. 
 <br>
 <br>
 
 ### **Lesson 1 - Arduino transmits bytes as ASCII characters to python program**
 
-Lesson 1 demonstrates how Arduino's Serial.println function transmits data as ASCII characters. The python receiving program utilizes pySerial's readuntil function to recognize when the entire data message has been received.
-
-Study and run the examples to understand how the Arduino Serial.println function transmits data, as well as how the python program opens the serial connection and reads byte data.
+>Lesson 1 demonstrates how Arduino's Serial.println function transmits data as ASCII characters. The python receiving program utilizes pySerial's readuntil function to recognize when the entire data message has been received.
+>
+>Study and run the examples to understand how the Arduino Serial.println function transmits data, as well as how the python program opens the serial connection and reads byte data.
 <br>
 <br>
 
 ### **Lesson 2 - Arduino transmits bytes as binary values to python program**
 
-Lesson 2 illustrates how to transmit single and multiple byte integers from Arduino to a python program. The python examples demonstrate how the data is natively received and then converted to the correct integer data value.
-
-Study and run the examples to understand how the Arduino Serial.write function transmits binary data, as well as how the python program reads the binary data.
+>Lesson 2 illustrates how to transmit single and multiple byte integers from Arduino to a python program. The python examples demonstrate how the data is natively received and then converted to the correct integer data value.
+>
+>Study and run the examples to understand how the Arduino Serial.write function transmits binary data, as well as how the python program reads the binary data.
 <br>
 <br>
 
 ### **Lesson 3 - python transmits and receives bytes to/from Arduino**
 
-Lesson 3 demonstrates how to transmit one data message from python to Arduino. 
-
-Study and run the examples to understand how python's pySerial write function works in conjunction with Arduino Serial.readStringUntil function.
+>Lesson 3 demonstrates how to transmit one data message from python to Arduino. 
+>
+>Study and run the examples to understand how python's pySerial write function works in conjunction with Arduino Serial.readStringUntil function.
 <br>
 <br>
 
 ### **Lesson 4 - Handling Ctrl+C signal interrupt**
 
-This example illustrates how to handle an asynchronous signal interrupt to gracefully exit from a program.
+>This example illustrates how to handle an asynchronous signal interrupt to gracefully exit from a program.
 <br>
 <br>
 
 ### **Lesson 5 - Arduino transmits random xy values to python**
 
-This lesson illustrates how to send multiple data values from Arduino to python. Encoding the message with delimiters aids in extracting the received information. The Serial.print functions are used to transmit data as ASCII characters. The delimiters were necessary as the length of x and y values varied from 1 to 3 digit values.
-
-This example also demonstrates how to use the Arduino milliseconds timer to control tasks with different timing requirements.
-
-The lesson combines signal interrupt handling with an infinite loop, allowing the program to exit gracefully, closing the serial connection before terminating.
+>This lesson illustrates how to send multiple data values from Arduino to python. Encoding the message with delimiters aids in extracting the received information. The Serial.print functions are used to transmit data as ASCII characters. The delimiters were necessary as the length of x and y values varied from 1 to 3 digit values.
+>
+>This example also demonstrates how to use the Arduino milliseconds timer to control tasks with different timing requirements.
+>
+>The lesson combines signal interrupt handling with an infinite loop, allowing the program to exit gracefully, closing the serial connection before terminating.
 <br>
 <br>
 
