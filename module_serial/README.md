@@ -131,12 +131,12 @@ pySerial is a python package that encapsulates serial port access on a variety o
 <br>
 
 ## Lessons
+> Complete each of these lessons, in order.
 <br>
 
 ### **Lesson 0 - Python program lists connected serial devices**
 
 >This example illustrates how to list device information for connnected com ports. It is for your information only and not required to open a serial connection. 
-<br>
 <br>
 
 ### **Lesson 1 - Arduino transmits bytes as ASCII characters to python program**
@@ -145,14 +145,12 @@ pySerial is a python package that encapsulates serial port access on a variety o
 >
 >Study and run the examples to understand how the Arduino Serial.println function transmits data, as well as how the python program opens the serial connection and reads byte data.
 <br>
-<br>
 
 ### **Lesson 2 - Arduino transmits bytes as binary values to python program**
 
 >Lesson 2 illustrates how to transmit single and multiple byte integers from Arduino to a python program. The python examples demonstrate how the data is natively received and then converted to the correct integer data value.
 >
 >Study and run the examples to understand how the Arduino Serial.write function transmits binary data, as well as how the python program reads the binary data.
-<br>
 <br>
 
 ### **Lesson 3 - python transmits and receives bytes to/from Arduino**
@@ -161,12 +159,10 @@ pySerial is a python package that encapsulates serial port access on a variety o
 >
 >Study and run the examples to understand how python's pySerial write function works in conjunction with Arduino Serial.readStringUntil function.
 <br>
-<br>
 
 ### **Lesson 4 - Handling Ctrl+C signal interrupt**
 
 >This example illustrates how to handle an asynchronous signal interrupt to gracefully exit from a program.
-<br>
 <br>
 
 ### **Lesson 5 - Arduino transmits random xy values to python**
