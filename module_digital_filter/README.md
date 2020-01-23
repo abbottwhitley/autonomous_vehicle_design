@@ -61,8 +61,8 @@ The digital processor output y<sub>n</sub> is calculated from the values x<sub>0
 
 1. **Simple gain filter**:
 <p align="center">
-    <b>y<sub>n</sub> = Kx<sub>n</sub></b><br>
-    <b>where K is a constant gain factor. K > 1 makes the filter an amplifier, while 0 < K < 1 makes the filter an attenuator.</b><br>
+    <b>y<sub>n</sub> = Kx<sub>n</sub></b><br><br>
+    where K is a constant gain factor. K > 1 makes the filter an amplifier, while 0 < K < 1 makes the filter an attenuator.<br>
 </p>
 <br>
 
