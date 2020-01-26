@@ -1,229 +1,212 @@
-# Introduction to Digital Filters
+# Filtering Noise From Sensor Readings
 
-In signal processing, a filter is used to remove undesirable parts of the signal. Its purpose may be the removal of random noise or to extract parts of the signal within a frequency range.
-
-There are two main types of filters: analog and digital. Analog filters use electronic circuit components (resistors, capacitors, op amps) to produce the filtered signal. The analog signal is a voltage or current.
-
-Digital filters use a digital processor to perform numerical calculations on sampled values of the signal. An analog input signal is sampled and digitized using an ADC (analog to digital converter). Successive sampled values produce a binary number representation of the input signal, which is sent to the digital processor. The digital processor performs numerical calculations to produce the digitally filtered signal. If an analog output is required, a DAC (digital to analog converter) converts the signal back to analog form.
-
-<br>
-
-![dsp system](./images/dspsystem.gif "DSP System")
-
-[Image 1: DSP System][1]
-
-[1]: https://www.networxsecurity.org/fileadmin/user_upload/images/2015-08/dsp.system.gif
+Ideal sensors will always generate perfect output, exactly matching the input being sensed. The reality is that there are no perfect, ideal sensors. Sensor output may contain errors such a bias, noise, and time lags in reponse. This module will explore the use of filters to remove noise from sensor readings.
 <br>
 <br>
 
-## Digital Filter Advantages
+## What is noise?
 
-1. A digital filter is programmable. It can easily be changed without affecting the hardware circuitry. Analog filters can only be changed by redesigning the filter circuit.
-2. Digital filters are easily, designed, tested, and implemented on a computer.
-3. Digital filters are more stable than analog circuits, with respect to time and temperature.
-4. Complex combinations of filters in parallel or cascade are easier to implement digitally, compared to the analog circuitry requirements.
+Noise is any unwanted signal value that is combined with the desired signal. Noise can be generated internally and/or externally. Internal noise is caused by imperfections in the electrical design or thermal noise due to changing temperature. External noise sources include electromagnetic interference, radio frequency interference, sudden large current draws from motors turning on and off, and physical vibration.
+
+External noise can be lessened with shielding, vibration damping, and environmental temperature control. Eliminating internal noise, due to electrical design imperfections is beyond our control, as we are not manufacturing the sensor. Our only physical control is correctly wiring the sensor circuit, avoiding any loose connections, and reducing the length of any wiring leads to avoid induced noise.
 <br>
 <br>
 
-## Digital Filter Operation
-
-Let's define the "raw" signal to be filtered as a voltage waveform described by the function *V = x(t)* where *t* is time.<br>
-
-The voltage signal is sampled at time intervals **&Delta;t**. 
-<br>
-The sampled time value is 
-<p align="center">
-    <b>x<sub>i</sub> = x(i &Delta;t)</b><br>
-</p>
-
-<br>
-The digital sequence transferred from the ADC to the processor is represented by the sequence 
-<p align="center">
-    <b>x<sub>0</sub>, x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>,...</b><br>
-</p>
-corresponding to the values of the signal at time 
-<p align="center">
-    <b>t = 0, &Delta; t, 2&Delta;t, 3&Delta;t, ... </b><br>
-</p>
-t = 0 is the time sampling begins.
-
-<br>
-
-At time t = n&Delta;t, where n is a positive integer, the sampled input values are x<sub>0</sub>, x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, ..., x<sub>n</sub>.
-
-Over the time interval 0 to n, the digital outputs y<sub>0</sub>, y<sub>1</sub>, y<sub>2</sub>, y<sub>3</sub>, ..., y<sub>n</sub>
-
-The digital processor output y<sub>n</sub> is calculated from the values x<sub>0</sub>, x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, ..., x<sub>n</sub>. The calculated y values depend on the digital filter implementation.
+## Filtering Objective
+Our objective is to obtain sensor data that accurately represents the measured environment, by filtering out noise. The filter should smooth erratic sensor data with as little time delay as possible.
 <br>
 <br>
 
-## Simple Digital Filter Examples
+## Filtering Algorithms
 
-1. **Simple gain filter**:
-<p align="center">
-    <b>y<sub>n</sub> = Kx<sub>n</sub></b><br><br>
-    where K is a constant gain factor. K > 1 makes the filter an amplifier, while 0 < K < 1 makes the filter an attenuator.<br>
-</p>
-<br>
-
-2. **Pure delay filter**: The output value at time t = n&Delta;t is the input at time t = (n-1)&Delta;t<br>
-
-<p align="center">
-    <b>y<sub>n</sub> = x<sub>n-1</sub></b><br>
-</p>
-<br>
-
-3. **Two term difference filter**: The output value at time t = n&Delta;t is equal to the difference between the current input and the previous input. This is similar to an analog differentiator circuit. <br>
-
-<p align="center">
-    <b>y<sub>n</sub> = x<sub>n</sub> - x<sub>n-1</sub></b><br>
-    
-</p>
-<br>
-
-4. **Two term average filter**: The output of the current input and the previous input. This is a simple type of low pass filter as it tends to smooth out high-frequency variations in a signal.<br>
-
-<p align="center">
-    <b>y<sub>n</sub> = (x<sub>n</sub> + x<sub>n-1</sub>)/2</b><br>
-</p>
+We will look at three commonly implemented filtering algorithms:
+1. Averaging
+2. Running average
+3. Exponential Filter
 <br>
 <br>
 
-## Digital Filter Order
+## 1. Averaging Filter
 
-The order of a digital filter is the number of previous inputs (stored in the processor's memory) used to calculate the current output. Example 1, the simple gain filter is a zero order filter. The current output y<sub>n</sub> depends only on the current input x<sub>n</sub>. The pure delay filter, two term difference filter, and two-term average filter are first order filters because y<sub>n</sub> depends on the current input x<sub>n</sub> and the previous input x<sub>n-1</sub>.
+Averaging works by adding together a number of measurements and dividing the sum by the number of measurements. 
 
-Filters may be of any order from zero upwards.
+Average measurement code:
+
+```
+float sum = 0.0;
+int numMeasurements = 5;
+for(int i = 0; i < numMeasurements; ++i)
+{
+    sum += getSensorMeasurement();
+    delay(10);
+}
+average = sum / numMeasurements;
+
+``` 
+
+The code contains a assumed delay between each measurement. Sensors require time to stabilize between each measurement. The number of measurements is an assumed value as well. The *best* number of measurements will vary from sensor to sensor. 
+
+Noise has less effect on the average, when there are more measurements. There is a diminishing return on the number of measurements. The average of 51 values likely will not be less noisy than 50 values.
 <br>
 <br>
 
-## Digital Filter Coefficients
+### Averaging Filter Pros & Cons
 
-Digital filters can be written in these general forms:
+Pros:
+- simple to calculate
 
-<p align="center">
-    <b>Zero order: y<sub>n</sub> = a<sub>0</sub> x<sub>n</sub> </b><br>
-    <b>First order: y<sub>n</sub> = a<sub>0</sub> x<sub>n</sub> + a<sub>1</sub> x<sub>n-1</sub> </b><br>
-    <b>Second order: y<sub>n</sub> = a<sub>0</sub> x<sub>n</sub> + a<sub>1</sub> x<sub>n-1</sub> + a<sub>2</sub> x<sub>n-2</sub> </b><br>
-</p>
-
-The constants a<sub>0</sub>, a<sub>1</sub>, a<sub>2</sub>, ... are called the filter coefficients.
+Cons:
+- time required to make measurements
+- power required to make measurements
 <br>
 <br>
 
-## Recursive and non-recursive filters
+## 2. Running Average Filter
 
-The four examples above are non-recursive filters. The current output y<sub>n</sub> is calculated only from the current and previous input values (x<sub>n</sub>, x<sub>n-1</sub>, x<sub>n-2</sub>, ...)
+The running average makes one measurement, adds it to the sum, and then computes the average. 
+<br>
 
-A recursive filter's current output value y<sub>n</sub> is calculated from both input values and previously calculated output values. These previous output values are stored in the processor's memory.
+### Running average code
+```
+const int RunAverageCount = 5;
+float measurementBuffer[RunAverageCount] = {0.0};
+int dataIndex = 0;
 
-The term recursive refers to the "going back" to previously calcuated output values, y<sub>n-1</sub>, y<sub>n-2</sub>, ...
+float rawSensorData = getSensorMeasurement();
+measurementBuffer[dataIndex] = rawSensorData;
+dataIndex += 1;
+if(dataIndex >= RunAverageCount)
+{
+    dataIndex = 0;
+}
 
-In general, recursive filters require lower order filters to achieve the desired frequency response than non-recursive filters. Lower order filters translate to fewer calculations required by the processor.
+float runningAverageMeasurement = 0.0;
+for(int i = 0; i < RunAverageCount; ++i)
+{
+    runningAverageMeasurement += measurementBuffer[i];
+}
 
->Note: Non-recursive filters are known as FIR (Finite Impulse Response) filters, while recursive filters are called IIR (Infinite Impulse Response) filters.
->
-> The terms FIR and IIR refer to their differing impulse respones. The digital filter's impulse response is the filter's output sequence when a *unit impulse* is applied at its input. A unit impulse is a simple input sequence consisting of a single value 1 at time *t = 0*, followed by all zeros at subsequent sampling instants.
->
->A FIR filter's impulse response is of finite duration. An IIR filter's impulse response theoretically continues forever because the previous output terms feed energy back into the filter input. An IIR's actual impulse response reduces virtually to zero in a finite time.
+runningAverageMeasurement /= RunAverageCount;
+
+delay(10);
+
+```
 <br>
 <br>
 
-## Simple Recursive Filter Example
+### Running Average Filter Pros & Cons
+pros:
+- produces a single filtered output faster than averaging method
 
-The simple recursive digital filter represented as
-
-<p align="center">
-    <b>y<sub>n</sub> = x<sub>n</sub> + y<sub>n-1</sub> </b><br>
-</p>
-
-The current ouput <b>y<sub>n</sub> is the sum of the current input x<sub>n</sub> and the previous output y<sub>n-1</sub>.
-
-At time *t=0*, <b>y<sub>-1</sub> is undefined and usually assumed to be zero.
-
-Over time, the filter is the sum of the current input and all the previous inputs. This filter is the digital equivalent of an analog integrator circuit.
-
-<p align="center">
-    <b>y<sub>0</sub> = x<sub>0</sub> + y<sub>-1</sub> =  x<sub>0</sub> </b><br>
-    <b>y<sub>1</sub> = x<sub>1</sub> + y<sub>0</sub> =  x<sub>1</sub> + x<sub>0</sub> </b><br>
-    <b>y<sub>2</sub> = x<sub>2</sub> + y<sub>1</sub> =  x<sub>2</sub> + x<sub>1</sub> + x<sub>0</sub> </b><br>
-</p>
-
-The recursive filter calculates the output more efficiently than a recursive filter, requiring fewer addition operations and less memory storage.
-<br>
-
-<p align="center">
-    <b>Recursive</b>: y<sub>5</sub> = x<sub>5</sub> + y<sub>4</sub><br>
-    <b>Non-recurseive</b>: y<sub>5</sub> = x<sub>5</sub> + x<sub>4</sub> +  x<sub>3</sub> + x<sub>2</sub> + x<sub>1</sub> + x<sub>0</sub><br>
-</p>
+cons:
+- at startup(reset), buffer contains no measurements
+- produces a slower response to changes in measurements
+- requires more memory for measurement history
 <br>
 <br>
 
-### Recursive (IIR) Filter Order
+## 3. Exponentially Moving Average Filter (EMA)
 
-The order of a recursive filter is the largest number of previous input or output values required to compute the current output.
+An exponential moving average filter (EMA), also known as an exponentially weighted moving averge (EWMA) is a first-order infinite impulse response filter that applies weighting factors which decrease exponentially over time.
 
-The simple recursive example above is classified as first order because it uses one previous output value y<sub>n-1</sub>.
-<br>
-<br>
-
-### Coefficients of recursive (IIR) digital filters
-
-The general symmetrical form of a first-order recursive filter is 
-<p align="center">
-    <b>b<sub>0</sub> y<sub>n</sub> + b<sub>1</sub> y<sub>n-1</sub>= a<sub>0</sub>x<sub>n</sub> + a<sub>1</sub> x<sub>n-1</sub> </b><br>
-</p>
-
-Solving for y<sub>n</sub>, the general form is
-
-<p align="center">
-    <b>y<sub>n</sub> = (a<sub>0</sub>x<sub>n</sub> + a<sub>1</sub> x<sub>n-1</sub> - b<sub>1</sub> y<sub>n-1</sub>) / (b<sub>0</sub>) </b><br>
-</p>
-<br>
-<br>
-
-## Transfer Function 
-
-The digital filter transfer function is obtained from the symmetrical form of the general equation, with all the output terms on one side of the equation and all the input terms on the other side.
-
-The delay operator, z<sup>-1</sup>, is applied to the equation. When applied to a sequence of digital values, this operator gives us the previous value in the sequence. Effectively, it introduces a delay of one sampling interval.
-
-Applying a delay to x<sub>n</sub> gives the previous input x<sub>n-1</sub>.
-
-<p align="center">
-    <b>z<sup>-1</sup>x<sub>n</sub> = x<sub>n-1</sub></b><br>
-</p>
-
-Using the delay operator to describe a recursive digital filter,
-
-<p align="center">
-    <b>b<sub>0</sub> y<sub>n</sub> + b<sub>1</sub> y<sub>n-1</sub>= a<sub>0</sub>x<sub>n</sub> + a<sub>1</sub> x<sub>n-1</sub> </b><br>
-</p>
-
-becomes
-
-<p align="center">
-    <b>b<sub>0</sub> y<sub>n</sub> + b<sub>1</sub>z<sup>-1</sup>y<sub>n</sub> + b<sub>2</sub> z<sup>-2</sup>y<sub>n</sub> = a<sub>0</sub>x<sub>n</sub> + a<sub>1</sub> z<sup>-1</sup>x<sub>n</sub> + a<sub>2</sub> z<sup>-2</sup>x<sub>n</sub>
-    </b><br>
-</p>
-
-Factoring and rearranging provides the relationship between the ouput and input,
+The filter's output, y, is a weighted average of the current input and previous inputs, with the weighting decreasing exponentially.
 
 <p align="center">
     <b>
-    y<sub>n</sub> / x<sub>n</sub> = (a<sub>0</sub> + a<sub>1</sub> z<sup>-1</sup> + a<sub>2</sub> z<sup>-2</sup>) / (b<sub>0</sub> + b<sub>1</sub>z<sup>-1</sup> + b<sub>2</sub> z<sup>-2</sup>)
+    y<sub>n</sub> = &alpha; (x<sub>n</sub> + (1-&alpha;) x<sub>n-1</sub> + (1-&alpha;)<sup>2</sup> x<sub>n-2</sub> + (1-&alpha;)<sup>3</sup> x<sub>n-3</sub> + ... )
     </b><br>
 </p>
 <br>
-This is the general form of the transfer function for a second-order recursive (IIR) filter.
 
-For higher order filters, further terms of z<sup>-1</sup> are added. For a first order filter, the terms in z<sup>-2</sup> are omitted.
+The formula, as written above, is complex to implement, in terms of changing the weighting of past inputs over time. The formula can be rewritten, with a limited number of terms, as a recursive formula, using the past output from the filter as a filter input.
+
+Let's start with the initial sensor reading at time t = 0.
+
+y<sub>0</sub> = &alpha;x<sub>0</sub><br><br>
+
+The next measurement at time t = 1, produces the equation
+
+y<sub>1</sub> = &alpha;(x<sub>1</sub> + (1-&alpha;)x<sub>0</sub>)<br>
+     = &alpha;x<sub>1</sub> + &alpha;x<sub>0</sub> + -&alpha;<sup>2</sup>x<sub>0</sub><br><br>
+
+Subsitute y<sub>0</sub> for &alpha;x<sub>0</sub> and write the equation as y<sub>1</sub> = &alpha;x<sub>1</sub> + y<sub>0</sub> + -&alpha;<sup>2</sup>x<sub>0</sub><br>
+
+Solve the equation y<sub>0</sub> = &alpha; x<sub>0</sub> in terms of x<sub>0</sub>:   x<sub>0</sub> = y<sub>0</sub>/&alpha;<br>
+
+Substitute for x<sub>0</sub>: y<sub>1</sub> = &alpha;x<sub>1</sub> + y<sub>0</sub> + -&alpha;<sup>2</sup>y<sub>0</sub> / &alpha;<br>
+
+which simplifies to y<sub>1</sub> = &alpha;x<sub>1</sub> + y<sub>0</sub> -&alpha;y<sub>0</sub> = &alpha;x<sub>1</sub> + (1-&alpha;) y<sub>0</sub> <br><br>
+
+Similarly, it can be shown that the next measurement will produce y<sub>2</sub> = &alpha;x<sub>2</sub> + (1-&alpha;) y<sub>1</sub> <br><br>
+
+The formula then reduces to <b>y<sub>n</sub> = &alpha;x<sub>n</sub> + (1-&alpha;) y<sub>n-1</sub></b><br><br>
+
+The amount of smoothing is controlled by the weighting parameter &alpha;, where 0 <= &alpha; <= 1. When the weight is large, &alpha; = 0.90, the filter does not smooth the measurements very much, but responds quickly to changes. If the weight is low, &alpha; = 0.10, the filter smooths the measurements a lot, but does not respond quickly to changes.
+<br>
 <br>
 
-A non-recursive (FIR) filter has a simpler transfer function. The second-order FIR filter's general form is
 
-<p align="center">
-    <b>
-    y<sub>n</sub> / x<sub>n</sub> = a<sub>0</sub> + a<sub>1</sub> z<sup>-1</sup> + a<sub>2</sub> z<sup>-2</sup> / (b<sub>0</sub>)
-    </b><br>
-</p>
+### Selecting &alpha;
+
+The value of alpha may be computed, based on a desired cutoff frequency. The cutoff frequency *f<sub>c</sub>* is defined as the frequency where the power gain is one half. It's also called the *-3dB* point, because 10 log<sub>10</sub> (1/2) = -3.0 dB.
+
+There are several formulas for relating &alpha; to the cutoff frequency *f<sub>c</sub>*. One such formula is shown below.
+
+&omega;<sub>c</sub> = arccos( (&alpha<sup>2</sup> + 2&alpha; - 2)/ (2&alpha; - 2))  rad/sample 
+
+The sampling frequency, in Hertz (samples/sec), is *f<sub>s</sub>* = (&omega;<sub>c</sub>) / (2 &pi;)
+
+The formula was derived, at the link below. Read this for a thorough presentation of the derivation and pole-zero characteristics of the filter.
+
+https://tttapa.github.io/Pages/Mathematics/Systems-and-Control-Theory/Digital-filters/Exponential%20Moving%20Average/Exponential-Moving-Average.html <br><br>
+
+
+### How does &alpha; affect smoothing and response to change?
+
+In general, the higher the &alpha;, the more noise is filtered out, but more lag is introduced when reacting to real data changes.
+
+The image below illustrates the impulse response of different alpha values over time. Smaller alpha values filter out the implulse noise faster, as past output is weighted more heavily than current input.<br>
+
+![EMA Impulse Response](./images/impulseResponse.png "Smoothing over time")
+<br>
+<br>
+
+The image below illustrates the step response of different alpha values over time. Larger alpha values respond to a change in signal faster, as current input is weighted more heavily than past.<br>
+
+![EMA Step Response](./images/stepResponse.png "Reflecting change in signal over time")
+<br>
+<br>
+
+### Initializing Filter Values
+
+- Compute the average of a few data input readings as the initial output
+- For the first value, y[0], set the output equal to the input. (No filtering)
+- For a control system, set the initial output to the desired set point
+<br>
+<br>
+
+### EMA Filter code
+```
+float alpha = 0.2;
+float previousOutput = 0.0;
+
+while(1)
+{
+    currentInput = getSensorData();
+    currentOutput = (1-alpha)*previousOutput + alpha * currentInput;
+    previousOutput = currentOutput;
+    delay();
+}
+
+```
+
+
+### EMA pros and cons
+
+pros:
+- requires little memory
+- few computations
+- weight allows selection of the amount of filtering
+
+cons:
+- requires tuning the weight value 
