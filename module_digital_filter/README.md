@@ -177,6 +177,9 @@ The image below illustrates the step response of different alpha values over tim
 <br>
 <br>
 
+[Source code](ema_step_impulse_response.py)
+
+
 ### Initializing Filter Values
 
 - Compute the average of a few data input readings as the initial output
