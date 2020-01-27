@@ -215,4 +215,4 @@ cons:
 - requires tuning the weight value 
 
 
-> See the [noisy square wave example](./noisy_square_wave/README.md)
+> See the [square wave example](/square_wave/README.md)
