@@ -45,4 +45,19 @@ Lowering the cutoff frequency to 100 Hz, produces a distorted signal, due to the
 <br>
 <br>
 
-Experiment with different cutoff frequencies. How is alpha affected? How is the filtered signal changed?
+<p>Experiment with different cutoff frequencies. How is alpha affected? How is the filtered signal changed?<br></p>
+ 
+
+### Fixed Point Implementation of the Low-Pass EMA Filter
+
+<p>The formula y<sub>n</sub> =&alpha;x + (1-&alpha;)y<sub>n-1</sub> is written for floating point math. Many embedded processors do not have floating-point math, so it must be emulated with fixed point math. Both [1] and [2] contain a good discussion of a fixed point math implementation.<br></p>
+<br>
+
+**References**
+
+Credit for this example goes to [Ten Little Algorithms, Part 2: The Single-Pole Low-Pass Filter][1]
+
+[1]https://www.embeddedrelated.com/showarticle/779.php
+
+
+[2]https://tttapa.github.io/Pages/Mathematics/Systems-and-Control-Theory/Digital-filters/Exponential%20Moving%20Average/C++Implementation.html 
