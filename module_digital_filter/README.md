@@ -152,7 +152,7 @@ The value of alpha may be computed, based on a desired cutoff frequency. The cut
 
 There are several formulas for relating &alpha; to the cutoff frequency *f<sub>c</sub>*. One such formula is shown below.
 
-&omega;<sub>c</sub> = arccos( (&alpha<sup>2</sup> + 2&alpha; - 2)/ (2&alpha; - 2))  rad/sample 
+&omega;<sub>c</sub> = arccos( (&alpha;<sup>2</sup> + 2&alpha; - 2)/ (2&alpha; - 2))  rad/sample 
 
 The sampling frequency, in Hertz (samples/sec), is *f<sub>s</sub>* = (&omega;<sub>c</sub>) / (2 &pi;)
 
@@ -213,3 +213,6 @@ pros:
 
 cons:
 - requires tuning the weight value 
+
+
+> See the [noisy square wave example](./noisy_square_wave/README.md)
