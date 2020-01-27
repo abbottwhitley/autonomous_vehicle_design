@@ -1,4 +1,4 @@
-## Module 2 - Plotting Data with Matplotlib
+## Plotting Data with Matplotlib
 
 ### Lesson 1 - Plot y versus x with default linestyle and color
 
@@ -56,8 +56,6 @@ Source code: [lesson5.py](lesson5.py)
 <br>
 <br>
 <br>
-
-
 
 
 **API documentation: matplotlib.pyplot.stem https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.stem.html#matplotlib.pyplot.stem**
