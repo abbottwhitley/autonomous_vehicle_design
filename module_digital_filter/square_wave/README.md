@@ -1,6 +1,6 @@
 # Noisy Square Wave Example
 
-The [source code](noisy_square_wave.py) generates the following noisy square wave signal.
+This [source code](noisy_square_wave.py) generates the following noisy square wave signal.
 
 ![Noisy square wave](./images/unfiltered.png "noisy square wave")
 <br>
