@@ -25,15 +25,18 @@ y = amplitude * np.sin(2*np.pi*signalFreq*t)
 ynoise = amplitude * np.sin(2*np.pi*signalFreq*t) + \
     0.5 * np.cos(noiseFreq*2*np.pi*t) + 1.5 * np.sin(noiseFreq2*2*np.pi*t)
 
-# labels will be show in legend
-plt.subplot(2,1,1)      # nrows, ncols, index
-plt.plot(t, y)
 
+# plot 1
+plt.subplot(2,1,1)      # nrows, ncols, index 1 is first row
+plt.plot(t, y, label='ideal signal')
+plt.title("Lesson 4 - Subplots")
+plt.legend()
 
+# plot 2
 plt.subplot(2,1,2)      # second row
-plt.plot(t, ynoise, color='red')
+plt.plot(t, ynoise, color='red', label='noisy signal') # labels will be show in legend
 plt.xlabel('Time [sec]')
-plt.title("Noisy Signal")
+plt.legend()
 
 # everything is drawn in the background, call show to see it
 plt.show()
