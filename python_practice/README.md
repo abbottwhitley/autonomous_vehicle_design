@@ -70,7 +70,7 @@ print(aList)
 
 <p>Performing this looping operation on a list is computationally expensive. We define <i>computationally expensive</i> as an operation that takes a lot of processing time or storage resources such as RAM and CPU bandwidth.</p><br><br>
 
-<p>The following example times these operations for a list and array of the same size. Iterating through the list takes significantly longer than the array multiplication. </p><br><br>
+<p>The following example computes scalar multiplication execution time for a list and array of the same size. Iterating through the list takes significantly longer than the array multiplication. </p><br><br>
 
 
 ```
