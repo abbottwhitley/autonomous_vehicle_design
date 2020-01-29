@@ -10,7 +10,7 @@
 */
 
 // global variable
-unsigned int count;             // 0 - 1023
+unsigned int count;             // 0 - 65535
 
 
 void setup() {
