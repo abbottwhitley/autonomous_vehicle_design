@@ -1,19 +1,18 @@
 '''
 Lesson 5 Description: Extracts x, y values from serial data read
 
-Uses CTRL+C signal handler to terminate execution
+Uses CTRL+C signal handler to terminate while loop execution
 
 '''
 import serial
 from signal import signal, SIGINT
-from sys import exit
 from time import sleep
 
 keepRunning = True 
 
 def handler(signal, frame):
     global keepRunning 
-    print('SIGINT or CTRL+C detected, exiting')
+    print('SIGINT or CTRL+C detected, setting keepRunning to False')
     keepRunning = False
 
 
@@ -57,7 +56,7 @@ if __name__ == '__main__':
         # Arduino program transmitting every 300 ms
         sleep(50/1000)
 
-    
+    print('while loop terminated')
     ser.close()
     print("closed port")
 
