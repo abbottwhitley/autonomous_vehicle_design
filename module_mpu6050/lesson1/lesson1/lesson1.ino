@@ -9,8 +9,8 @@ void reportStartState()
 {
   reportPowerState();
   reportConfigState();
-  reportAccelConfigState();
   reportGyroConfigState();
+  reportAccelConfigState();
 }
 
 void reportPowerState(void)
@@ -52,11 +52,12 @@ void reportConfigState(void)
     Serial.println((state & 0x38) >> 3, HEX);
   }
 
-  Serial.println("Digital Low Pass Filter Configuration");
+  Serial.println("\nDigital Low Pass Filter Configuration");
   Serial.println("  Accelerometer              Gyroscope");
   Serial.println("   (Fs = 1 kHz)");
   Serial.println("Bandwidth  Delay   Bandwidth  Delay  Fs(kHz)");
   Serial.println("(Hz)       (ms)    (Hz)       (ms)");
+  Serial.println("============================================");
   switch(state&0x07)
   {
     case 0:
