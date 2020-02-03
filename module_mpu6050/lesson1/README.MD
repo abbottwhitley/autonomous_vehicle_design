@@ -33,16 +33,14 @@ The original I2C specification had a maximum speed of 100 KHz (kbits/sec). Most 
 I2C has other higher speed modes, but not all devices support them.
 - Fast Mode - maximum clock frequency of 400 kHz.
 - Hi-Speed Mode - maximum clock frequency of 3.4 MHz
-- Ultra-Fast Mode - maximum clock frequency of 5 MHz
-<br>
+- Ultra-Fast Mode - maximum clock frequency of 5 MHz<br>
 
 ### I2C Limitations
 
 - Not particularly fast
 - Can only be used over short distances.
     - Maximum distance decreases as speed increases
-    - At 100 kHz, max distance is about 1 meter
-<br>
+    - At 100 kHz, max distance is about 1 meter<br>
 
 ### Data Transfer Protocol
 
@@ -91,5 +89,19 @@ To use the library, it must be included in your sketch `#include <Wire.h>`
 ## Lesson 1 Arduino Sketch
 
 Objectives
-- establish I2C communication between the Arduino Nano and MPU 6050.
-- read MPU 6050 register values upon initial startup
+- Establish I2C communication between the Arduino Nano and MPU 6050.
+- Read MPU 6050 register values upon initial startup
+    - Power Mangement 1
+        - Is sleep mode turned on?
+        - What clock is selected?
+    - Configuration
+        - Is external frame synchronization turned off?
+        - What is the digital low pass filter configuration?
+            - Acclerometer bandwidth, sample rate
+            - Gyroscope bandwidth, sample rate
+    - Acceleration Configuration
+        - Is the self-test disabled?
+        - What is the full scale range?
+    - Gyroscope Configuration
+        - Is the self-test disabled?
+        - What is the full scale range?
