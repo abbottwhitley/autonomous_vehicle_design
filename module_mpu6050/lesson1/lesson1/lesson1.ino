@@ -1,10 +1,6 @@
 #include <Wire.h>
 #include "mympu6050.h"
 
-// Serial Debug
-#define SERIAL_DEBUG
-
-
 /**  Global Variables **/
 MyMPU6050 mpu(MPU6050_ADDRESS_AD0_LOW);
 
