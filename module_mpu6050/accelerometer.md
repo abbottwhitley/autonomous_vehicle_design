@@ -10,7 +10,7 @@
 - Dynamic acceleration tells us how the device is moving.
 
 
-![Angle with respect to earth gravity ](./images/tilt_from_gravity.jpg "angle with respect to earth gravity")
+![Angle with respect to earth gravity ](./images/tilt_from_gravity.jpg "angle with respect to earth gravity")[1]
 
 [1] https://www.digikey.com/en/articles/techzone/2011/may/~/media/Images/Article%20Library/TechZone%20Articles/2011/May/Using%20An%20Accelerometer%20for%20Inclination%20Sensing/TZS111_Using_An_Fig_12.jpg <br>
 
@@ -45,7 +45,7 @@
 <br>
 <br>
  
-## Considerations when choosing an accelerometer [5]
+## Considerations when choosing an accelerometer
 
 <p><b>Accelerometer Type - Capacitive MEMS, Piezoelectric, or Piezoresistive</b> - Generally a capacitive MEMs accelerometer is best for motion sensing applications, where the motion is relatively slow/low frequency. Human motion and robot motion fit this category. Piezoelectric is best for vibration; and piezoresistive is best for shock testing.</p>
 <p><b>Analog output versus digital output</b> - This is determined by the hardware interface with the accelerometer. Analog style accelerometers output a continuous voltage proportional to acceleration. Digital output is usually a pulse width modulation, with duty cycle proportional to acceleration. For hardware with analog input capability, choose the analog style. For hardware with only digital inputs, choose the digital style. Digital style requires using timing resources to measure the duty cycle and performing additional computation operations.</p>
