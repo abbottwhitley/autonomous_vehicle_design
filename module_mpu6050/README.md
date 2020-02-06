@@ -42,3 +42,7 @@
 | 6 | Auxiliary Serial Clock (XCL) | Used to interface other I2C modules with MPU6050, optional |
 | 7 | AD0 | Used to vary I2C address |
 | 8 | Interrupt (INT) | Interrupt pin to indicate data is available to read |
+<br>
+<br>
+
+
