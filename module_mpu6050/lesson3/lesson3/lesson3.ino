@@ -60,5 +60,6 @@ void loop() {
   SensorData sd;
   mpu.readAllData(&sd);
   printAllData(&sd);
+  //printScaledData(&sd);
   delay(1000);
 }

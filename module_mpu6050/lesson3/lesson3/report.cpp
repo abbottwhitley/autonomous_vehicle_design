@@ -158,3 +158,14 @@ void printAllData(const SensorData *sd)
     Serial.print(sd->gyroY); Serial.print("\t");
     Serial.println(sd->gyroZ); 
 }
+
+void printScaledData(const SensorData *sd)
+{
+  Serial.print("a/g:\t");
+  Serial.print(sd->accelX / 16384.0f); Serial.print("\t");
+  Serial.print(sd->accelY / 16384.0f); Serial.print("\t");
+  Serial.print(sd->accelY / 16384.0f); Serial.print("\t");
+  Serial.print(sd->gyroX / 131.0f); Serial.print("\t");
+  Serial.print(sd->gyroY / 131.0f); Serial.print("\t");
+  Serial.println(sd->gyroZ / 131.0f); 
+}
