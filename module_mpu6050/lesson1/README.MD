@@ -20,17 +20,7 @@
     - Power Mangement 1
         - Is sleep mode turned on?
         - What clock is selected?
-    - Configuration
-        - Is external frame synchronization turned off?
-        - What is the digital low pass filter configuration?
-            - Acclerometer bandwidth, sample rate
-            - Gyroscope bandwidth, sample rate
-    - Acceleration Configuration
-        - Is the self-test disabled?
-        - What is the full scale range?
-    - Gyroscope Configuration
-        - Is the self-test disabled?
-        - What is the full scale range?
+<br>
 
 ### Program Files
 
