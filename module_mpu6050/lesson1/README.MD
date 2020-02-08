@@ -34,7 +34,7 @@
 
 ### Program Files
 
-Lesson 1 contains one source code files <br>
+Lesson 1 contains one source code file <br>
     - [lesson1](../lesson1/lesson1.ino)<br>
     
 
@@ -216,3 +216,8 @@ Note that 31% of dynamic memory is used by global variables. Based on the discus
 
 
 ![Global Variable Dynamic Memory Usage](./images/dynamic_memory_usage.png "global variable dynamic memory usage")<br>
+
+
+### Conclusion
+
+This lesson established I2C communication between an Arduino and the MPU-6050. The state of the power management 1 register was displayed. Lesson 2 builds upon this program, reading and reporting the device configuraton state.<br>
