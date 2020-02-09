@@ -5,7 +5,7 @@ Lesson 3
 ## Objectives
 - Power Management 1
     - Disable sleep mode, wake device
-- Read and display raw data
+- Read and display measurement data
     - Accelerometer
     - Temperature
     - Gyroscope

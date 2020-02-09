@@ -1,4 +1,4 @@
-# Scaling Acclerometer, Gyroscope, and Temperature Measurements
+# Lesson 4 - Scaling Acclerometer, Gyroscope, and Temperature Measurements
 
 <p><b>Objective</b>: Scale data measurements into meaningful units.</p><br>
 

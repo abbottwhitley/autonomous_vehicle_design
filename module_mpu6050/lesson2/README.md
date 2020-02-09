@@ -1,6 +1,6 @@
 # Lesson 2 - Power On Default Configuration
 
-<p>Lesson 2 builds up lesson 1. Additional functions are added to read the device configuration settings after the devices powers on.</p>
+<p>Lesson 2 builds upon lesson 1. Additional functions are added to read the device configuration settings after the devices powers on.</p>
 
 ## Objectives
 - Read the configuration register settings
