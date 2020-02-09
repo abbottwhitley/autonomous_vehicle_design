@@ -100,4 +100,69 @@ If you have the same sequence of code statements in two or more places, consider
 
 Improve your Arduino programming skills - SRAM Management, Joop Brokking  https://youtu.be/iOJ52VIvqYM 
 
-Adafruit   https://learn.adafruit.com/memories-of-an-arduino/optimizing-sram  
+Adafruit   https://learn.adafruit.com/memories-of-an-arduino/optimizing-sram
+
+
+### Optimize this Arduino Sketch
+
+<p>The following program example blinks an led and prints messages at certain time intervals.
+
+```
+const unsigned long BLINK_INTERVAL = 500;
+const unsigned long PRINT_INTERVAL = 550;
+unsigned long blinkTime, printTime;
+byte ledState;
+
+void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);
+  Serial.begin(38400);
+  ledState = 1;
+  digitalWrite(LED_BUILTIN, ledState);
+  blinkTime = millis();
+  printTime = millis();
+  Serial.println("setup function complete");
+}
+
+void loop() {
+  if( (millis() - blinkTime) > BLINK_INTERVAL)
+  {
+    ledState = ledState ^ (byte)0x01;
+    digitalWrite(LED_BUILTIN, ledState);
+    blinkTime = millis();
+  }
+  else if( (millis() - printTime) > PRINT_INTERVAL)
+  {
+    Serial.print("Time to write a message, printTime: ");
+    Serial.println(printTime);
+    printTime = millis();
+  }
+  else
+  {
+    unsigned long count = millis();
+    Serial.println("kill time in loop");
+    while( (millis() - count) < 250); 
+  }
+}
+```
+
+<p>The program uses 7% of program memory space and 13% of dynamic memory when compiled for an Arduino Uno.</p>
+
+
+![Non-optimized Memory](./images/memoryex1.png "Non-optimized Memory")
+<br>
+
+### The F() macro
+
+The string inside a program instruction is normally saved in RAM. If your sketch uses a lot of string constants, it can easily fill up RAM. If there is free FLASH memory space, the F macro indicates that the string must be saved in FLASH.
+
+`Serial.println("setup function complete");`
+
+Simply place the string inside F() as shown below.
+
+`Serial.println(F("setup function complete"));`
+
+<p>What is the effect of using the F() macro with the string constants in the example program above? Global variables now only use 9% of dynamic memory.</p>
+
+![F macro effect](./images/fmacroex2.png "F macro effect")
+<br>
+

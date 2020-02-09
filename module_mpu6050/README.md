@@ -1,12 +1,25 @@
+# Interial Measurement with the MPU-6050 Sensor
+
+<p>An inertial measurement unit (IMU) is a device that measures and reports a body's force, angular rate, and orientation, using a combination of accelerometers, gyroscopes, and magnetometers. The accelerometers detect linear acceleration. Gyroscopes measure the rotational (angular) rate. Some IMUs include a magnetometer to provide a heading reference. There is one accelerometer, gyro, and magnetometer for each of the three vehicle axes: roll, pitch, and yaw.</p>
+
+![Roll Pitch Yaw](./images/rollpitchyaw.png "roll pitch yaw")
+
+[1] https://xmarklabs.com/wp-content/uploads/2017/04/rollpitchyaw-300x292.png 
+
+<p> This module focuses on the MPU-6050 sensor as an interial measurement unit. The lessons help us become familiar with the hardware capabilities and configuration. Relative to our self-balancing robot project, this sensor will help the robot maintain an upright position and provide velocity information.</p>
+<p>The following sections provide an overview of the MPU-6050 and the lesson series.</p>
+<br>
+
+
 ## MPU-6050 Six-Axis (Gyro + Accelerometer) MEMS MotionTracking Device
 
-"The MPU-6050 devices combine a 3-axis gyroscope and a 3-axis accelerometer on the same silicon die, together with an onboard Digital Motion Processor™ (DMP™), which processes complex 6-axis MotionFusion algorithms. The device can access external magnetometers or other sensors through an auxiliary master I²C bus, allowing the devices to gather a full set of sensor data without intervention from the system processor" [1]
+"The MPU-6050 devices combine a 3-axis gyroscope and a 3-axis accelerometer on the same silicon die, together with an onboard Digital Motion Processor™ (DMP™), which processes complex 6-axis MotionFusion algorithms. The device can access external magnetometers or other sensors through an auxiliary master I²C bus, allowing the devices to gather a full set of sensor data without intervention from the system processor" [2]
 
-[1]: https://www.invensense.com/products/motion-tracking/6-axis/mpu-6050/
+[2]: https://www.invensense.com/products/motion-tracking/6-axis/mpu-6050/
 
 ![MPU-6000 Family Block Design](./images/mpu-6000-family-diagram.png "MPU-6000 Family Block Diagram")
 
-"For precision tracking of both fast and slow motions, the parts feature a user-programmable gyro full-scale range of ±250, ±500, ±1000, and ±2000 °/sec (dps), and a user-programmable accelerometer full-scale range of ±2g, ±4g, ±8g, and ±16g. Additional features include an embedded temperature sensor and an on-chip oscillator with ±1% variation over the operating temperature range." [1]
+"For precision tracking of both fast and slow motions, the parts feature a user-programmable gyro full-scale range of ±250, ±500, ±1000, and ±2000 °/sec (dps), and a user-programmable accelerometer full-scale range of ±2g, ±4g, ±8g, and ±16g. Additional features include an embedded temperature sensor and an on-chip oscillator with ±1% variation over the operating temperature range." [2]
 
 ### MPU6050 used to measure
 - Acceleration
@@ -42,3 +55,46 @@
 | 6 | Auxiliary Serial Clock (XCL) | Used to interface other I2C modules with MPU6050, optional |
 | 7 | AD0 | Used to vary I2C address |
 | 8 | Interrupt (INT) | Interrupt pin to indicate data is available to read |
+<br>
+<br>
+
+### Guides to Accelerometers and Gryoscopes
+
+Before starting the lessons, read the guide to [accelerometers](accelerometer.md) and the guide to [gyroscopes](gyroscope.md) for an overview of their operation.<br><br>
+
+## Lessons
+
+<p>The following set of lessons are designed to incrementally introduce the operation and capabilities of the MPU-6050 as an inertial measurement unit.
+
+### Lesson 1 - I2C communication between an Arduino and MPU-6050
+
+- Establish I2C communication between the Arduino Nano and MPU 6050.
+- Read MPU 6050 register values upon initial startup
+    - Power Mangement 1
+        - Is sleep mode turned on?
+        - What clock is selected?
+<br>
+
+### Lesson 2 - Default Configuration Register Settings
+
+- Digital Low Pass Filter Configuration
+- Accelerometer Full-Scale Configuration
+- Gyroscope Full-Scale Configuration
+<br>
+
+### Lesson 3 - Reading Data Measurements
+
+- Power Management 1
+    - Disable sleep mode, wake device
+- Read and display measurement data
+    - Accelerometer
+    - Temperature
+    - Gyroscope
+<br>
+
+### Lesson 4 - Scaling Acclerometer, Gyroscope, and Temperature Measurements
+
+The measurement register data values must be converted to meaningful units. The gyroscope and accelerometer sensitivity values are used to scale the gyro measurements to degrees/sec and the accelerometer measurements to units of gravity (g). The temperature measurement is converted to degrees C.
+<br>
+
+
