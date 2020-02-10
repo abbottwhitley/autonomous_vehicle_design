@@ -97,4 +97,9 @@ Before starting the lessons, read the guide to [accelerometers](accelerometer.md
 The measurement register data values must be converted to meaningful units. The gyroscope and accelerometer sensitivity values are used to scale the gyro measurements to degrees/sec and the accelerometer measurements to units of gravity (g). The temperature measurement is converted to degrees C.
 <br>
 
+### Lesson 5 - MyMPU6050 class
+
+The class MyMPU6050 is defined. It contains the functionality implemented in previous lessons and a few new functions for setting configuration registers.
+
+### Lesson 6 - Zero Offset Calibration
 
