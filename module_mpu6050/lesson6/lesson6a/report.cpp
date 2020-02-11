@@ -1,6 +1,12 @@
 #include <Arduino.h>              // Serial
 #include "report.h"
 
+
+void reportRegisterOffsets(MyMPU6050& mpu)
+{
+  Serial.println("\n****function reportRegisterOffsets needs code\n");
+}
+
 void reportPowerState(MyMPU6050 &mpu)
 {
   uint8_t state;

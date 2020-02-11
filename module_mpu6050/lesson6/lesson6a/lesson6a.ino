@@ -46,6 +46,7 @@ int main(void)
   delay(3000);
   reportGyroConfigState(mpu);
   Serial.println("");
+  reportRegisterOffsets(mpu);
   delay(5000);
 
   while(1)
