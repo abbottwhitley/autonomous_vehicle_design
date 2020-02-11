@@ -51,7 +51,7 @@ The errors are based on sampling measurements with the accel and gyro configured
 
 The image below illustrates the calibration process. The accelerometer and gyro offsets are set to zero. Sample 1000 measurements and calculate the average value for each offset. Use these as the new offset values, sample another 1000 measurements, calculate the mean value, comparing these new offset values to the required offset tolerance. Continue this process until the offset values converge to the desired tolerance.<br>
 
-![Calibration Algorithm](./images/calibration_algo.jpeg "calibration algorithm")[2]
+![Calibration Algorithm](./images/calibration_algo.jpeg "calibration algorithm")
 
 [2] http://mjwhite8119.github.io/Robots/assets/images/Control-Theory-Slides.025.jpeg 
 <br>
