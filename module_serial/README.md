@@ -179,6 +179,12 @@ pySerial is a python package that encapsulates serial port access on a variety o
 <br>
 <br>
 
+## Lesson 6 - Arduino Serial.readBytes
+
+Python example illustrates how to convert integer to bytes array and transmit with serial write.
+
+Arduino example illustrates how to use readBytes function to individually read the bytes from python and form them back into an integer value.
+
 ## Summary
 
 >Serial communication between an Arduino and another computer provides 
