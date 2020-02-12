@@ -27,17 +27,11 @@ void reportAccelConfigState(MyMPU6050& mpu);
  */
 void reportGyroConfigState(MyMPU6050& mpu);
 
-/*
- * Prints all data in the structure
+/* Uses serial library to print all data in the structure
  */
 void printAllData(const SensorData *sd);
 
-/*
- * sd contains raw, unscaled data measurements
- * scales the data by the default scale 
- * prints the scaled values
- */
-void printScaledData(const SensorData *sd);
+
 
 
 #endif 

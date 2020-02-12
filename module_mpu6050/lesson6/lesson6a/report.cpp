@@ -1,6 +1,11 @@
-#include <Arduino.h>
+#include <Arduino.h>              // Serial
 #include "report.h"
 
+
+void reportRegisterOffsets(MyMPU6050& mpu)
+{
+  Serial.println("\n****function reportRegisterOffsets needs code\n");
+}
 
 void reportPowerState(MyMPU6050 &mpu)
 {
@@ -150,22 +155,12 @@ void reportGyroConfigState(MyMPU6050& mpu)
 
 void printAllData(const SensorData *sd)
 {
-    Serial.print("axyz/gxyz:\t");
+    Serial.print(F("axyz/temp/gxyz:\t"));
     Serial.print(sd->accelX); Serial.print("\t");
     Serial.print(sd->accelY); Serial.print("\t");
     Serial.print(sd->accelZ); Serial.print("\t");
+    Serial.print(sd->temperature); Serial.print("\t");
     Serial.print(sd->gyroX); Serial.print("\t");
     Serial.print(sd->gyroY); Serial.print("\t");
     Serial.println(sd->gyroZ); 
-}
-
-void printScaledData(const SensorData *sd)
-{
-  Serial.print("a/g:\t");
-  Serial.print(sd->accelX / 16384.0f); Serial.print("\t");
-  Serial.print(sd->accelY / 16384.0f); Serial.print("\t");
-  Serial.print(sd->accelY / 16384.0f); Serial.print("\t");
-  Serial.print(sd->gyroX / 131.0f); Serial.print("\t");
-  Serial.print(sd->gyroY / 131.0f); Serial.print("\t");
-  Serial.println(sd->gyroZ / 131.0f); 
 }

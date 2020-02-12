@@ -27,5 +27,17 @@ void reportAccelConfigState(MyMPU6050& mpu);
  */
 void reportGyroConfigState(MyMPU6050& mpu);
 
+/* Uses serial library to print accelerometer
+ *  and gyroscope offset register values
+ * 
+ */
+void reportRegisterOffsets(MyMPU6050& mpu);
+
+/* Uses serial library to print all data in the structure
+ */
+void printAllData(const SensorData *sd);
+
+
+
 
 #endif 

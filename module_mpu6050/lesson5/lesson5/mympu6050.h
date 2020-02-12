@@ -51,6 +51,9 @@
 #define MPU6050_ACCEL_FS_8G  0x02
 #define MPU6050_ACCEL_FS_16G 0x03
 
+// Sizes
+#define MPU6050_ALL_MEASUREMENT_BYTES 14
+
 struct SensorData
 {
   int16_t accelX;
@@ -65,10 +68,10 @@ struct SensorData
 
 class MyMPU6050{
   public:
-    MyMPU6050(uint8_t i2cAddr);
+    MyMPU6050(uint8_t i2cAddr = MPU6050_ADDRESS_AD0_LOW );
     
-    void reset();
     void initialize(void);
+    void reset(void);
     uint8_t testConnection(void);
 
     void setClockSource(uint8_t source);
@@ -81,19 +84,18 @@ class MyMPU6050{
     uint8_t getPowerManagement1State(void)const;
     uint8_t getAccelConfigState(void)const;
     uint8_t getGyroConfigState(void)const;
-
-
+   
     uint8_t readAllData(struct SensorData* sd);
     
     
   private:
     uint8_t devAddr;
 
-
     void writeBits(uint8_t regAddr, uint8_t leftBit, uint8_t numBits, uint8_t data);
     void writeByte(uint8_t regAddr, uint8_t data);
-    uint8_t readByte(uint8_t regAddr);
+    uint8_t readByte(uint8_t regAddr)const;
     uint8_t readBytes(uint8_t regAddr, uint8_t *buf, uint8_t count);
+    
 };
 
 

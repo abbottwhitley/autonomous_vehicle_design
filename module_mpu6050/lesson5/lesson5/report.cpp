@@ -1,6 +1,5 @@
-#include <Arduino.h>
+#include <Arduino.h>              // Serial
 #include "report.h"
-
 
 void reportPowerState(MyMPU6050 &mpu)
 {
@@ -146,5 +145,16 @@ void reportGyroConfigState(MyMPU6050& mpu)
   } 
 
   Serial.println(F(" deg/s"));
-  
+}
+
+void printAllData(const SensorData *sd)
+{
+    Serial.print(F("axyz/temp/gxyz:\t"));
+    Serial.print(sd->accelX); Serial.print("\t");
+    Serial.print(sd->accelY); Serial.print("\t");
+    Serial.print(sd->accelZ); Serial.print("\t");
+    Serial.print(sd->temperature); Serial.print("\t");
+    Serial.print(sd->gyroX); Serial.print("\t");
+    Serial.print(sd->gyroY); Serial.print("\t");
+    Serial.println(sd->gyroZ); 
 }

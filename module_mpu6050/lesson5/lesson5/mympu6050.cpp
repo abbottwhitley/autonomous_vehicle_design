@@ -4,9 +4,48 @@
 
 #define SERIAL_DEBUG
 
+
 MyMPU6050::MyMPU6050(uint8_t i2cAddr)
 {
   devAddr = i2cAddr;
+}
+
+
+uint8_t MyMPU6050::getDeviceAddress()const
+{
+  return devAddr;
+}
+
+
+uint8_t MyMPU6050::getConfigState(void)const
+{
+  return readByte((uint8_t)MPU6050_RA_CONFIG); 
+}
+
+
+uint8_t MyMPU6050::getAccelConfigState(void)const
+{
+  return readByte((uint8_t)MPU6050_RA_ACCEL_CONFIG); 
+}
+
+
+uint8_t MyMPU6050::getGyroConfigState(void)const
+{
+  return readByte((uint8_t)MPU6050_RA_GYRO_CONFIG); 
+}
+
+
+uint8_t MyMPU6050::getPowerManagement1State(void)const
+{
+  return readByte(MPU6050_RA_PWR_MGMT_1);
+}
+
+/*
+ * Wakes from sleep mode
+ */
+void MyMPU6050::initialize(void)
+{
+  setSleepEnabled(false); // wake up device
 }
 
 /*
@@ -19,11 +58,21 @@ MyMPU6050::MyMPU6050(uint8_t i2cAddr)
  */
 void MyMPU6050::reset(void)
 {
-  // bit 7 high is reset
   writeByte(MPU6050_RA_PWR_MGMT_1, 0x80);
 }
 
-
+/* Sets clock source
+ *  Parameter source
+ *  0   Internal 8MHz oscillator
+ *  1   PLL with X axis gyroscope reference
+ *  2   PLL with Y axis gyroscope reference
+ *  3   PLL with Z axis gyroscope reference
+ *  4   PLL with external 32.768 kHz reference
+ *  5   PLL with external 19.2 MHz reference
+ *  6   reserved
+ *  7   stops the clock and keeps the timing generator 
+ *      in reset
+ */
 void MyMPU6050::setClockSource(uint8_t source)
 {
   // clock select is bits 2:0
@@ -51,36 +100,15 @@ void MyMPU6050::setClockSource(uint8_t source)
 }
 
 
-void MyMPU6050::setFullScaleGyroRange(uint8_t scale)
-{
-  // full scale is bits 4:3
-  writeBits(MPU6050_RA_GYRO_CONFIG, 4, 2, scale);
-  
-  #ifdef SERIAL_DEBUG
-    uint8_t b;
-    b = readByte(MPU6050_RA_GYRO_CONFIG);
-
-    // full scale is bits 4:3
-    uint8_t mask = 0x18;   // b0001 1000
-    
-    Serial.println(F("\nfunction setFullScaleGyroRange"));
-   
-    if( (b & mask)>>3 == scale)
-    {
-      Serial.print(F("Success setting gyro scale to "));
-      Serial.println(scale, HEX); 
-    }
-    else
-    {
-      Serial.print(F("error setting gyro scale, expected: "));
-      Serial.print(scale);
-      Serial.print(F(", regVal: "));
-      Serial.println(b,HEX);
-    }
-  #endif 
-
-}
-
+/* Sets accelerometer full scale range
+ *  
+ * Parameter scale
+ *    0     +- 2g
+ *    1     +- 4g
+ *    2     +- 8g
+ *    3     +- 16g
+ * 
+ */
 void MyMPU6050::setFullScaleAccelRange(uint8_t scale)
 {
   // full scale is bits 4:3
@@ -111,7 +139,51 @@ void MyMPU6050::setFullScaleAccelRange(uint8_t scale)
 
 }
 
-/*
+
+/* Sets gyroscope full scale range
+ *  
+ * Parameter scale
+ *    0     +- 250 deg/sec
+ *    1     +- 500 deg/sec
+ *    2     +- 1000 deg/sec
+ *    3     +- 2000 deg/sec
+ * 
+ */
+void MyMPU6050::setFullScaleGyroRange(uint8_t scale)
+{
+  // full scale is bits 4:3
+  writeBits(MPU6050_RA_GYRO_CONFIG, 4, 2, scale);
+  
+  #ifdef SERIAL_DEBUG
+    uint8_t b;
+    b = readByte(MPU6050_RA_GYRO_CONFIG);
+
+    // full scale is bits 4:3
+    uint8_t mask = 0x18;   // b0001 1000
+    
+    Serial.println(F("\nfunction setFullScaleGyroRange"));
+   
+    if( (b & mask)>>3 == scale)
+    {
+      Serial.print(F("Success setting gyro scale to "));
+      Serial.println(scale, HEX); 
+    }
+    else
+    {
+      Serial.print(F("error setting gyro scale, expected: "));
+      Serial.print(scale);
+      Serial.print(F(", regVal: "));
+      Serial.println(b,HEX);
+    }
+  #endif 
+
+}
+
+
+/* Parameter
+ *  enabled - false wakes from sleep mode
+ *          - true puts device into sleep mode
+ *          
  * Register: Power Management 1
  * Bit 6: sleep bit 
  *         1 - device is in low power sleep mode
@@ -147,27 +219,12 @@ void MyMPU6050::setSleepEnabled(bool enabled)
 }
 
 
-/*
- * Section 4.28, Register 107 "Upon power up, the MPU-60X0 clock source 
- * defaults to the internal oscillator. However, it is highly
- * recommended that the device be configured to use one of the 
- * gyroscopes (or an external clock source) as the clock reference 
- * for improved stability."
- */
-void MyMPU6050::initialize(void)
-{
-  setClockSource(MPU6050_CLOCK_PLL_XGYRO);
-  setFullScaleGyroRange(MPU6050_GYRO_FS_250);
-  setFullScaleAccelRange(MPU6050_ACCEL_FS_2G);
-  setSleepEnabled(false); // wake up device
-}
-
 /* WHO_AM_I register stores the upper 6 bits of MPU-60X0's
  *  7-bit I2C address. The least significant bit is determined
  *  by the vaue of the AD0 pin, which is not reflected in this
  *  register.
  *  
- * Returns address stored in WHO_AM_I register
+ * Returns address stored in WHO_AM_I register, 0x68
  * bits 0 and 7 are hard coded to 0 
  */
 uint8_t MyMPU6050::testConnection(void)
@@ -176,31 +233,83 @@ uint8_t MyMPU6050::testConnection(void)
 }
 
 
-uint8_t MyMPU6050::getDeviceAddress()const
+/* Reads accel, temperature and gyro measurement registers.
+ *  
+ * Parameter
+ *  output: sd 
+ *    If all measurement bytes are read, the sd is populated with
+ *    measurement data.
+ *    If not all bytes are read, then no data is stored in sd.
+ *  
+ * Returns number of bytes read
+ */
+uint8_t MyMPU6050::readAllData(struct SensorData* sd)
 {
-  return devAddr;
+  uint8_t buf[MPU6050_ALL_MEASUREMENT_BYTES];
+  uint8_t bytesRead;
+  bytesRead = readBytes(MPU6050_RA_ACCEL_XOUT_H, buf, (uint8_t)MPU6050_ALL_MEASUREMENT_BYTES);
+  if(bytesRead == (uint8_t)MPU6050_ALL_MEASUREMENT_BYTES)
+  {
+    // first byte read from high order register, second byte from low
+    // form 16 bit value from 8 bit values
+    sd->accelX = (((int16_t)buf[0]) << 8) | buf[1];
+    sd->accelY = (((int16_t)buf[2]) << 8) | buf[3];
+    sd->accelZ = (((int16_t)buf[4]) << 8) | buf[5];
+    sd->temperature = (((int16_t)buf[6]) << 8) | buf[7];
+    sd->gyroX = (((int16_t)buf[8]) << 8) | buf[9];
+    sd->gyroY = (((int16_t)buf[10]) << 8) | buf[11];
+    sd->gyroZ = (((int16_t)buf[12]) << 8) | buf[13];
+  }
+
+  return bytesRead;
 }
 
-uint8_t MyMPU6050::getConfigState(void)const
+
+/* Reads one byte from parameter-specified register address
+ * 
+ * regAddr - register address to read 
+ *
+ * Returns byte read
+ */
+uint8_t MyMPU6050::readByte(uint8_t regAddr)const
 {
-  return readByte((uint8_t)MPU6050_RA_CONFIG); 
+  uint8_t data;
+  Wire.beginTransmission(devAddr);
+  Wire.write(regAddr);
+  Wire.endTransmission(false);            // send TX buffer, send restart to keep connection alive
+  Wire.requestFrom(devAddr, (uint8_t)1);  // request 1 byte, default true sends stop message after request,
+                                          // releasing i2c bus
+  data = Wire.read();
+  return data;
 }
 
-uint8_t MyMPU6050::getAccelConfigState(void)const
-{
-  return readByte((uint8_t)MPU6050_RA_ACCEL_CONFIG); 
-}
 
-uint8_t MyMPU6050::getGyroConfigState(void)const
+/* Reads bytes from register and stores them in buf.
+ * 
+ * Parameters
+ *  regAddr - register address to read
+ *  buf - storage for bytes read
+ *  count - number of bytes to read
+ * 
+ * Returns number of bytes read
+ */
+uint8_t MyMPU6050::readBytes(uint8_t regAddr, uint8_t *buf, uint8_t count)
 {
-  return readByte((uint8_t)MPU6050_RA_GYRO_CONFIG); 
+  uint8_t i = 0;
+  
+  Wire.beginTransmission(devAddr);
+  Wire.write(regAddr);
+  Wire.endTransmission(false);      // send TX buffer, send restart to keep connection alive
+  Wire.requestFrom(devAddr, count);
+ 
+  while(Wire.available() && i < count)
+  {
+    buf[i] = Wire.read();
+    ++i;
+  }
+  
+  return i;
 }
-
-uint8_t MyMPU6050::getPowerManagement1State(void)const
-{
-  return readByte(MPU6050_RA_PWR_MGMT_1);
-}
-
 
 /* Write multiple bits to an 8-bit device register
 *
@@ -247,10 +356,16 @@ void MyMPU6050::writeBits(uint8_t regAddr, uint8_t leftBit, uint8_t numBits, uin
   regVal |= data;
 
   writeByte(regAddr, regVal);
-
 }
 
 
+
+/*
+ * Writes one byte to specified register address.
+ * 
+ * regAddr - register address
+ * data    - byte to write
+ */
 void MyMPU6050::writeByte(uint8_t regAddr, uint8_t data)
 {
   Wire.beginTransmission(devAddr);     
@@ -258,32 +373,4 @@ void MyMPU6050::writeByte(uint8_t regAddr, uint8_t data)
   Wire.write(data);
   Wire.endTransmission(true);       // transmits bytes that were queued by write
                                     // sends stop message after transmission, releases i2c bus
-}
-
-
-uint8_t MyMPU6050::readByte(uint8_t regAddr)
-{
-  uint8_t data;
-  Wire.beginTransmission(devAddr);
-  Wire.write(regAddr);
-  Wire.endTransmission(false);            // send TX buffer, send restart to keep connection alive
-  Wire.requestFrom(devAddr, (uint8_t)1);  // request 1 byte, default true sends stop message after request,
-                                          // releasing i2c bus
-  data = Wire.read();
-  return data;
-}
-
-// returns number of bytes read
-uint8_t MyMPU6050::readBytes(uint8_t regAddr, uint8_t *buf, uint8_t count)
-{
-  uint8_t i = 0;
-  Wire.beginTransmission(devAddr);
-  Wire.write(regAddr);
-  Wire.endTransmission(false);      // send TX buffer, send restart to keep connection alive
-  Wire.requestFrom(devAddr, count);
-  while(Wire.available() && i < count)
-  {
-    buf[i] = Wire.read();
-  }
-  return i;
 }
