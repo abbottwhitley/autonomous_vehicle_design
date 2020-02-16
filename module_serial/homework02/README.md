@@ -81,3 +81,54 @@ https://youtu.be/b52ksbX6J94
 https://youtu.be/pcqIim0fAj4 
 
 
+## Frequency - Acknowledge Implementation
+
+### Python Send Frequency Behavior
+
+#### Frequency Input
+
+Frequency is a user input, with a maximum of 250 Hz. The assignment does specify if this is an integer or floating point data type. Since we have worked with integer data in previous examples, let's work with the floating point data type.
+
+The input function reads information from the keyboard and returns it as a string. Simply passing that string to the float function will convert it to floating point.
+
+Another consideration is the minimum frequency. Do we want to allow DC, 0 Hz? For this example, the chosen minimum is 1 Hz.
+
+
+```
+def getSignalFrequency():
+    freq = -1.0
+    while(freq < 1.0 or freq > 250.0):
+        # input returns a string, convert it to a float
+        freq = float(input('enter signal frequency in range [1.0,250.0] '))
+    return freq
+```
+
+#### Transmitting Frequency
+
+The floating point frequency value must be converted to type bytes or bytearray for the serial write function. The struct library is used to interpret bytes as packed binary data. The struct.pack function is used to convert the float variable freq to a bytes object.
+
+`struct.pack(format, v1, v2, ...)`
+
+Data is packed according to the format string parameter. https://docs.python.org/3.8/library/struct.html#format-characters
+
+The format character 'f' is used for the standard size C and python 4 byte float type. `struct.pack('f',freq)`
+
+Why is the byte size of 4 significant? The Arduino double data type is 4 bytes. The trig functions we will use later in Arduino use double data types. Here we insure that the number of bytes transmitted from python matches Arduino data requirements.
+
+Study and run the [inputFreq.py](input.py) example. The output for the frequency input 64.0 is shown below. When developing and testing, this type of confirmation about data types, lengths, and memory content helps with the debugging process.
+
+```
+enter signal frequency in range [1.0,250.0] 64.0
+freq data type: <class 'float'>
+freqBytes data type: <class 'bytearray'>
+freqBytes: bytearray(b'\x00\x00\x80B')
+length of bytes object: 4
+['0x00', '0x00', '0x80', '0x42']
+```
+
+The number of decimal places have not been restricted, but you may wish to do so. The round function can be used before converting the floating point value to a bytes object.
+
+`freq = round(freq,2)`
+
+
+ Now, we are ready to transmit the frequency from python to Arduino.
