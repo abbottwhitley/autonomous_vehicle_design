@@ -130,5 +130,11 @@ The number of decimal places have not been restricted, but you may wish to do so
 
 `freq = round(freq,2)`
 
+Video tutorial: https://youtu.be/jXO2oevBSFE 
 
- Now, we are ready to transmit the frequency from python to Arduino.
+Now, we are ready to transmit the frequency from python to Arduino.
+
+Debugging python to Arduino float transmission: https://youtu.be/pvRMq7sQlGQ
+
+
+
