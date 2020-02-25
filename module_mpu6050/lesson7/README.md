@@ -213,9 +213,17 @@ global t, accelx, accely, accelz
 
 
 
-### Example Output
+### Example Output - lesson7.py
 
 The plot shown below was generated from a static, accelerometer, placed on a flat, level surface. Run the programs and move the accelerometer to see the graph respond.
 
 ![Example Output](./images/Figure_1.png "example output")
+<br><br><br>
 
+
+### Example Output - lesson7_subplot.py
+
+The file [lesson7_subplot.py](lesson7_subplot.py) illustrates how to plot the same data in separate subplots.
+
+
+![Subplot Output](./images/Figure_1.png "subplot example")
