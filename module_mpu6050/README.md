@@ -103,3 +103,10 @@ The class MyMPU6050 is defined. It contains the functionality implemented in pre
 
 ### Lesson 6 - Zero Offset Calibration
 
+When an inertial sensor is at rest, there is often a small offset difference from the expected zero measurement values. This offset is known as sensor bias. The mean sensor bias is calcuated and used to correct measured values.
+
+
+### Lesson 7 - Real-time Plotting Using FuncAnimation
+
+Accelerometer data updated and plotted in real-time using matplotlib.pyplot.funcanimation.
+
