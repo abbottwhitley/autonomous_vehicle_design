@@ -227,3 +227,8 @@ The file [lesson7_subplot.py](lesson7_subplot.py) illustrates how to plot the sa
 
 
 ![Subplot Output](./images/Figure_1.png "subplot example")
+
+
+<br><br><br>
+
+Reference: https://i-systems.github.io/IoT/html/07_Arduino_with_Python_blank.html 
