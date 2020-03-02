@@ -16,7 +16,7 @@ The accelerometer bias is calculated by placing the device on a flat surface, wh
 
 ## MPU Hardware Offset Registers Application Note
 
-The [MPU Hardware Offset Registers Application Note](invensense-hardware-offset-registers.pdf) provides some information about finding the offset biases for the accelerometer and gyroscope, as well as the gyro and accelerometer offset registers. Section 3 indicates the hardware offset registers can be used for offset cancellation when not using the DMP (Digital Motion Processor) algorithms. Note: We are not using the DMP.
+The [MPU Hardware Offset Registers Application Note](../datasheet/invensense-hardware-offset-registers.pdf) provides some information about finding the offset biases for the accelerometer and gyroscope, as well as the gyro and accelerometer offset registers. Section 3 indicates the hardware offset registers can be used for offset cancellation when not using the DMP (Digital Motion Processor) algorithms. Note: We are not using the DMP.
 
 When using the offset registers, all data from the MEMS sensors will have the stored offset values applied before outputting to the data registers for users to read. All data in the FIFO, output registers and used in the DMP will already have these offsets included.
 
@@ -139,5 +139,9 @@ In practice, when testing the algorithm, make the error tolerances larger, so th
 5. calibration complete, return offset values 
     
 
+
+## Student Exercise
+
+Implement and test the calibration function. Add the needed functions to the MyMPU6050 class. 
 
 
