@@ -22,7 +22,7 @@ void loop() {
     msg = Serial.readStringUntil('\n');
 
     // echo back the message received
-    Serial.println(msg);
+    Serial.println("test some stuff");
   }
   else
   {

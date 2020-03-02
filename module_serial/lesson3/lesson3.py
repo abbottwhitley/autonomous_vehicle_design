@@ -7,7 +7,7 @@ Description:
 import serial
 from time import sleep
 
-portName = '/dev/ttyACM0'
+portName = 'COM3'
 baudRate = 38400
 
 try:
