@@ -13,8 +13,6 @@ Know which module the messages is coming from
 
 
 
-
-
 ### Logging Levels
 
 | Level | When it’s used |
