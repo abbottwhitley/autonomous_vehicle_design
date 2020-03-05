@@ -29,7 +29,7 @@ Events that are tracked can be handled in different ways. The simplest way of ha
 
 
 
-## Simple Logging Example
+## Example 1 - Simple Logging Example
 
 The logging library contains functions that match the level. The example below has one message for the warning level and one for the info level. 
 
@@ -44,7 +44,7 @@ Run the script and observe the console output: `WARNING:root:oops, that may be a
 The INFO message doesn’t appear because the default level is WARNING. The next example will use the config function to set the level. Note that the printed message includes the indication of the level. Ignore the 'root' part for now.
 
 
-### Configuring Logging Level
+## Example 2 - Configuring Logging Level
 
 The script below calls the config file to set the logging level. With the level set to INFO, both the warning and info messages will print to the console. The debug message will not print because it is a lower level than INFO.
 
@@ -60,7 +60,7 @@ logging.debug('the bug is here')
 basicConfig must be called before calling debug(), info(), etc. Additional calls to basicConfig will have no effect.
 
 
-### Configuring Logging to a File
+## Example 3 - Configuring Logging to a File, Append Mode
 
 The default configuration is console, but you may also configure logging message to a file. Add a filename name parameter to the script, as shown below, and run it. There will be no console output. Both messages will be written to the file.
 
@@ -72,9 +72,41 @@ logging.info('made it this far')
 ```
 
 
+## Example 4 - Configuring Logging to a File, Overwrite Mode
+
 Each time this script is run, messages will be appended to the log file. If you want to overwrite the file contents, instead of appending, specify the file mode argument.
 
 `logging.basicConfig(filename='example.log', filemode='w', level=logging.DEBUG)`
+
+
+## Example 5 - Log Record Attributes
+
+Example 5 illustrates specifying a format for logging messages.
+
+```
+logFormat = '%(asctime)s::%(levelname)s::line %(lineno)d::%(message)s'
+logging.basicConfig(level=logging.DEBUG, format=logFormat)
+```
+
+https://docs.python.org/3/library/logging.html#logging.Formatter 
+
+
+## Example 6 - Logging Variable Data
+
+Use the specifiers %s for string, %d for integer, %f for floating point.
+
+```
+msg = 'hello'
+count = 5
+temperature = 12.1 
+
+logging.warning('temperature: %f', temperature) 
+logging.debug('count: %d, temperature: %.2f', count, temperature)
+logging.info('msg: %s', msg)
+```
+
+
+
 
 
 ## Reference
