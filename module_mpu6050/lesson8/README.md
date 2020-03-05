@@ -76,21 +76,6 @@ Pitch angle: tan &theta;<sub>xyz</sub> = (-Gpx)/(sqrt(Gpy<sup>2</sup> + Gpz<sup>
 where Gpx, Gpy, Gpz are the accelerometer x, y, and z measurements, respectively.
 
 
-## Measuring Tilt Angle with respect to Earth's Surface
-
-The above formulas express how to rotate an object by X and Y axis to a specified orientation. There is another method to express the device's spatial orientation. These similar formulas are from [Bosch](./datasheets/BMA220 datasheet.pdf)
-
-![Tilt Angles](./images/_Tilt_angle.png "Accelerometer Tilt Angles")
-
-Angle estimation:
-
-accelX = 1g * sin(&theta;)*cos(&phi;);
-accelY = -1g * sin(&theta;)*sin(&phi;);
-accelZ = 1g * cos(&theta;)
-
-Roll angle, tan(&phi;) = accelX / accelY
-
-
 
 ## lesson8.ino
 
@@ -101,26 +86,3 @@ The program [lesson8.ino](lesson8.ino) measures the tilt of the x and y axes wit
     >> What happens when the board is not tilted, but vibrated? (Says the board is tilted when it is not.)<br>
 >Conclusion: this is not the best method for measuring tilt angle.<br>
 <br><br>
-
-## Measuring Tilt Angle Using Three Axes
-
-For accurate measurements of tilt angles in the x and y planes, we need a 3 axis accelerometer. Briefly, accelerometer measures and tells you the amount of force (acceleration) it is experiencing in X, Y and Z direction. Now, this data makes sense in orientation because of gravity. We know that if an object is not moving it will experience acceleration only due to gravity (neglect the other minimal forces). The direction of gravitational force is always same with respect to the earth’s frame but based on the orientation of IMU, it will experience different amount of acceleration along the three axes. These acceleration values can give us roll and pitch values.
-
-
-We could use the formula above to calculate the angles using x and z for the x axis and using y and z for the y axis. However we can improve things further by using all three outputs to calculate each angle. This is done using the following formulas.
-
-X axis tilt angle = arc( x / sqrt(y<sup>2</sup> + z<sup>2</sup>))
-
-Y axis tilt angle = arc( y / sqrt(x<sup>2</sup> + z<sup>2</sup>))
-
-
-pitch = 180 * atan2(accelX, sqrt(accelY*accelY + accelZ*accelZ))/PI;
-roll = 180 * atan2(accelY, sqrt(accelX*accelX + accelZ*accelZ))/PI;
-
-## Roll and Pitch
-
-The tilt about the x axis is known as the roll angle, while the tilt about the y axis is called the pitch angle.
-
-
-
-> Reminder: Accelerometers are very sensitive and are thus quite prone to vibration, take multiple readings from the accelerometer and filter out noise.
