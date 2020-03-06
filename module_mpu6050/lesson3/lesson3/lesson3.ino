@@ -44,14 +44,14 @@ int main(void)
     gz = Wire.read() << 8 | Wire.read(); 
 
     
-    Serial.print("ax: \t");   Serial.print(ax);
-    Serial.print("\tay: \t"); Serial.print(ay);
-    Serial.print("\taz: \t"); Serial.print(az);
-    Serial.print("\ttemp: \t"); Serial.print(temp);
-    Serial.print("\tgx: \t");   Serial.print(gx);
-    Serial.print("\tgy: \t"); Serial.print(gy);
-    Serial.print("\tgz: \t"); Serial.println(gz);
-    delay(100);
+    Serial.print("ax: \t");   Serial.print(float(ax) / float(16384));
+    Serial.print("\tay: \t"); Serial.print(float(ay) / float(16384));
+    Serial.print("\taz: \t"); Serial.print(float(az) / float(16384));
+    Serial.print("\ttemp: \t"); Serial.print(float(temp) / float(340) + 36.53);
+    Serial.print("\tgx: \t");   Serial.print(float(gx) / float(131));
+    Serial.print("\tgy: \t"); Serial.print(float(gy) / float(131));
+    Serial.print("\tgz: \t"); Serial.println(float(gz) / float(131));
+    delay(1000);
   }
 
   return 0;

@@ -48,6 +48,12 @@ void MyMPU6050::initialize(void)
   setSleepEnabled(false); // wake up device
 }
 
+uint8_t MyMPU6050::calculateBiasOffset(void)
+{
+
+  return 0
+}
+
 /*
  * Sets DEVICE_RESET bit to 1
  * All internal registers are reset to their default

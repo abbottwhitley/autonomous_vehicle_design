@@ -87,6 +87,7 @@ class MyMPU6050{
     
     void initialize(void);
     void reset(void);
+    uint8_t MyMPU6050::calculateBiasOffset(void);
     uint8_t testConnection(void);
 
     void setClockSource(uint8_t source);

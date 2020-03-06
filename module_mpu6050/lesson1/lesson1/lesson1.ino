@@ -3,16 +3,20 @@
 
 // MPU 6050 I2C address
 #define MPU6050_ADDRESS_AD0_LOW     0x68   // i2c address pin low (GND), default
+                                           // Decimal value of 104
 
 // MPU 6050 register addresses
-#define MPU6050_RA_PWR_MGMT_1   0x6B
-#define MPU6050_RA_WHO_AM_I     0x75  
+#define MPU6050_RA_PWR_MGMT_1   0x6B  // Register 107
+#define MPU6050_RA_WHO_AM_I     0x75  // Register 117
 
 
 bool testCommunication(uint8_t devAddr)
 {
   uint8_t state;
+  // Read byte from the WHO_AM_I register on device 0x68
+  // Who am I register should contain a value of 0x68
   state = readByte(devAddr, MPU6050_RA_WHO_AM_I);
+  // Verify that the device we're reading from is device 0x68
   if(state == 0x68){
     Serial.println("success, testCommunication\n");
     return true;
@@ -48,7 +52,10 @@ void reportPowerState(uint8_t devAddr)
   
 }
 
-
+// read a byte from device number 0x68 (address of the "device")
+// Input:
+//    uint8_t devAddr :: 8 bit unsigned integer value of the device's address (device to read from)
+//    unit8_t regAddr :: 8 bit unsigned integer value of the register on the device to read
 uint8_t readByte(uint8_t devAddr, uint8_t regAddr)
 {
   uint8_t data;
@@ -72,6 +79,7 @@ int main(void)
   {
     reportPowerState(MPU6050_ADDRESS_AD0_LOW);
   }
+  Serial.println("test");
 
   while(1);
   return 0;
