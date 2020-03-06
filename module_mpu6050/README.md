@@ -110,3 +110,6 @@ When an inertial sensor is at rest, there is often a small offset difference fro
 
 Accelerometer data updated and plotted in real-time using matplotlib.pyplot.funcanimation.
 
+### Lesson 8 - Roll, Pitch Angle Estimates Using Accelerometer
+
+The accelerometer's gravity vector is used to estimate roll and pitch angles. 
