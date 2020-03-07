@@ -1,6 +1,13 @@
-/* Read and transmit accelerometer data from MPU-6050
+/*  Read and transmit accelerometer data from MPU-6050
  * 
+ *  Serial transmission: accelerometer x, y, z data type is int16_t, range -32768, +32767. 
+ *   
+ *  Sampling interval is 20 milliseconds, .020 seconds
+ *  
+ *  Make sure the baud rate chosen is fast enough to transmit the data at the 
+ *  sample rate.
  */
+
 
 #include <Wire.h>
 
@@ -9,14 +16,13 @@ const unsigned long SAMPLE_INTERVAL = 20;     // milliseconds
 unsigned long startTime;
 
 
-
 void setup() {
   Wire.begin();                   // Wire library initialization
   Wire.beginTransmission(MPUADDRESS);   // Begin transmission to MPU, default I2C address
   Wire.write(0x6B);               // PWR_MGMT_1 register
   Wire.write(0);                  // MPU-6050 to start mode
   Wire.endTransmission(true);
-  Serial.begin(9600);
+  Serial.begin(115200);
   startTime = millis();
 }
 
