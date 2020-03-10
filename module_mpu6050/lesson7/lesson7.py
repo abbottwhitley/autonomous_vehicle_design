@@ -52,16 +52,16 @@ def animate(i):
 
 if __name__ == '__main__':
 
-    portName = "/dev/ttyACM0"
-    ser = serialConnect(portName,9600)
+    portName = "com5"
+    ser = serialConnect(portName,38400)
     sleep(2)                                        # give Arduino time to reset
 
     # flush input buffer, discarding all contents
     ser.reset_input_buffer()
 
-    numPoints = 201                                 # number of data points
-    fig = plt.figure(figsize=(12, 6))               # create figure window
-    ax = plt.axes(xlim=(0,numPoints-1), ylim=(-2, 2))    # specify axis limits
+    numPoints = 201                                     # number of data points
+    fig = plt.figure(figsize=(12, 6))                   # create figure window
+    ax = plt.axes(xlim=(0,numPoints-1), ylim=(-2, 2))   # specify axis limits
 
     plt.title('Real-time sensor data')
     plt.xlabel('Data points')
@@ -91,4 +91,3 @@ if __name__ == '__main__':
                                interval=delay, blit=True)
 
     plt.show() 
-

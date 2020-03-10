@@ -16,7 +16,7 @@ void setup() {
   Wire.write(0x6B);               // PWR_MGMT_1 register
   Wire.write(0);                  // MPU-6050 to start mode
   Wire.endTransmission(true);
-  Serial.begin(9600);
+  Serial.begin(38400);
   startTime = millis();
 }
 
