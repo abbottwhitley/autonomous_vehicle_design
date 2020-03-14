@@ -145,23 +145,31 @@ This improves the serial print time to 1.252 ms, but not enough to meet the over
 
 ![serial print time](./images/timing400k_print.png "serial print time")
 
+<br>
+<br>
+
+### What is the correct baud rate?
 
 Is it the baud rate that is slowing transmission? What is the worst case number of bytes transitted with the above code?
 
-The int16_t values can range from -32768 to 32767. -32768 requires 6 characters at 1 character per byte, or 6 bytes. Each comma requires 1 byte. The println sends te
+The int16_t values can range from -32768 to 32767. -32768 requires 6 characters at 1 character per byte, or 6 bytes. Each comma requires 1 byte. The println sends a carriage return and line feed.
 
-7 measurements x 6 bytes + 6 commas x 1 byte + carriage return byte + new line byte = 50 bytes.
+<b><u>Serial print Byte Calculations</u></b>
+
+(7 data measurements x 6 bytes) + (6 commas x 1 byte) + carriage return byte + new line byte = 50 bytes.
 
 50 bytes x 10 bits/ byte = 500 bits.
 
 1000 transmissions/sec x 500 bits/transmission = 500,000 bits / second.
 
 The 115,200 baud rate only allows 115,200 bits /second. That's a bottleneck as well. We can increase the baud rate and/or more efficiently transmit data with the Serial write function.
+<br>
+
+<b><u>Serial write Byte Calculations</u></b>
 
 The Serial write function transmits the int16_t values as a series of two bytes. This is better than the worst case ASCII character transmission of 6 bytes. We do not need the comma delimiter because we know exactly how many bytes will be transmitted each time.
 
 7 data measurements/transmission x 2 bytes/measurement = 14 bytes / transmission
-
 
 14 bytes/transmission * 10 bits/byte = 140 bits/transmission
 
