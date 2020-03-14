@@ -1,6 +1,6 @@
 # Lesson 8 - How fast can we sample the measurement data?
 
-Previously, we learned that the default setting of the DPLF_CFG bits in CONFIG configuration register 26 is 0. Section 4.3 of the register map pdf, shows the accelerometer sampling frequency, F<sub>s</sub> = 1 kHZ and gyroscope sampling frequency,  F<sub>s</sub> = 8 kHZ. This is the limit imposed by the sensor hardware, but what about I2C communication speed limitations? 
+The default setting of the DPLF_CFG bit field in the CONFIG configuration register 26 is 0. Section 4.3 of the register map pdf, shows the accelerometer sampling frequency, F<sub>s</sub> = 1 kHZ and gyroscope sampling frequency,  F<sub>s</sub> = 8 kHZ. This is the limit imposed by the sensor hardware, but what about I2C communication speed limitations? 
 
 **What is our practical limit for reading the accelerometer, temperature, and gyroscope data, using I2C communication?**
 
@@ -35,7 +35,7 @@ The table below contains the number of clock cycles required for the data transf
 
 | Data | Clock Cycles |
 | --- | --- |
-| i2c address | 9 |
+| i2c address | 8 |
 | register number | 9 |
 | accel x | 18 |
 | accel y | 18 |
@@ -45,14 +45,17 @@ The table below contains the number of clock cycles required for the data transf
 | gyro y | 18 |
 | gyro z | 18 |
 
-Total clock cyles = 2 x 9 + 7 * 18 = 144 clock cycles
+Total clock cyles = 1 x 8 + 1 x 9 + 7 * 18 = 143 clock cycles
 
 <br>
-At 100 kHZ, 144 clock cycles require 1.44 ms. There will be additional overhead time due to the Arduino programming code function calls. A 1.44 ms time period corresponds to a frequency of approximately 694 Hz, slower than the possible 1 kHz sample rate.
+At 100 kHZ, 143 clock cycles require 1.43 ms. There will be additional overhead time due to the Arduino programming code function calls. A 1.43 ms time period corresponds to a frequency of approximately 699 Hz, slower than the possible 1 kHz sample rate.
 
-The MPU 6050 also supports an i2c fast mode clock frequency of 400 kHZ. At 400 kHz, 144 clock cycles require 0.36 ms, a frequency of 2778 Hz. 
+The MPU 6050 also supports an i2c fast mode clock frequency of 400 kHZ. At 400 kHz, 143 clock cycles require 0.36 ms, a frequency of 2778 Hz. 
 
-Run the lesson 8 Arduino sketch to see the average read times for standard mode and fast mode.
+Let's examine how program design choices affect program execution speed:
+- I2C clock frequency
+- Serial baud rate
+- Serial print versus write functions
 
 <br>
 
