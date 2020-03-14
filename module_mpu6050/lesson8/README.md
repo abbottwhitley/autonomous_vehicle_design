@@ -35,7 +35,9 @@ The table below contains the number of clock cycles required for the data transf
 
 | Data | Clock Cycles |
 | --- | --- |
-| i2c address | 8 |
+| i2c address | 7 |
+| read/write bit | 1 |
+| ack bit | 1 |
 | register number | 9 |
 | accel x | 18 |
 | accel y | 18 |
@@ -45,12 +47,12 @@ The table below contains the number of clock cycles required for the data transf
 | gyro y | 18 |
 | gyro z | 18 |
 
-Total clock cyles = 1 x 8 + 1 x 9 + 7 * 18 = 143 clock cycles
+Total clock cyles = (7 + 1 + 1) + 1 x 9 + 7 * 18 = 144 clock cycles
 
 <br>
-At 100 kHZ, 143 clock cycles require 1.43 ms. There will be additional overhead time due to the Arduino programming code function calls. A 1.43 ms time period corresponds to a frequency of approximately 699 Hz, slower than the possible 1 kHz sample rate.
+At 100 kHZ, 144 clock cycles require 1.44 ms. There will be additional overhead time due to the Arduino programming code function calls. A 1.44 ms time period corresponds to a frequency of approximately 694 Hz, slower than the possible 1 kHz sample rate.
 
-The MPU 6050 also supports an i2c fast mode clock frequency of 400 kHZ. At 400 kHz, 143 clock cycles require 0.36 ms, a frequency of 2778 Hz. 
+The MPU 6050 also supports an i2c fast mode clock frequency of 400 kHZ. At 400 kHz, 144 clock cycles require 0.36 ms, a frequency of 2778 Hz. 
 
 Let's examine how program design choices affect program execution speed:
 - I2C clock frequency
