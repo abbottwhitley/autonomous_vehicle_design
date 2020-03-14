@@ -3,7 +3,7 @@
  *  Questions:
  *    How much time does it take
  *      - read MPU6050 measurement registers?
- *      - serial transmit data using write  
+ *      - serial transmit data using print
  *      
  *  Calculates average time to read data registers and transmit using
  *  Serial.print
@@ -27,7 +27,7 @@ void mysetup(void)
 {
   Serial.begin(115200);
   Wire.begin();
-  //.setClock(400000L);
+  Wire.setClock(400000L);
   delay(100);
   Wire.beginTransmission(MPU6050_ADDRESS_AD0_LOW);
   Wire.write(0x6B);                       // power management 1 register
@@ -54,7 +54,7 @@ int main(void)
 
   while(1)
   {
-    if(count < numSamples && (micros() - sampleTime) > SAMPLE_INTERVAL_USEC)
+    if(count < numSamples && (micros() - sampleTime) >= SAMPLE_INTERVAL_USEC)
     {
       startTime = micros();
       // read data from registers
@@ -81,6 +81,7 @@ int main(void)
   
   
       startTime = micros();
+      /*
       Serial.print("ax: \t");   Serial.print(ax);
       Serial.print("\tay: \t"); Serial.print(ay);
       Serial.print("\taz: \t"); Serial.print(az);
@@ -88,9 +89,9 @@ int main(void)
       Serial.print("\tgx: \t");   Serial.print(gx);
       Serial.print("\tgy: \t"); Serial.print(gy);
       Serial.print("\tgz: \t"); Serial.println(gz);
-      
+      */
 
-      /* faster transmit by removing labels, tabs
+      // faster transmit by removing labels, tabs
       Serial.print(ax);
       Serial.print(",");
       Serial.print(ay);
@@ -104,7 +105,7 @@ int main(void)
       Serial.print(gy);
       Serial.print(",");
       Serial.println(gz);
-      */
+      
        
       //Serial.flush();
       stopTime = micros();

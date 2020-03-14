@@ -31,7 +31,7 @@ void mysetup(void)
                                           // setting other bits to zero turns off reset
                                           // and uses internal oscillator as clock
   Wire.endTransmission(true);
-  ,  Serial.println("setup complete");
+  Serial.println("setup complete");
   delay(250);
 }
 
@@ -39,6 +39,11 @@ void mysetup(void)
 int main(void)
 {
   int16_t data[7] = { 0, 1, 2, 3, 4, 5, 6};
+  Serial.println("array contents");
+  Serial.write((byte*)data, 14);
+  Serial.flush();
+  delay(1000);
+  
   unsigned long startTime, stopTime, sampleTime;
   unsigned long avgReadTime = 0, avgTxTime = 0;
   int numSamples = 5;
@@ -51,7 +56,7 @@ int main(void)
 
   while(1)
   {
-    if(count < numSamples && (micros() - sampleTime) > SAMPLE_INTERVAL_USEC)
+    if(count < numSamples && (micros() - sampleTime) >= SAMPLE_INTERVAL_USEC)
     {
       startTime = micros();
       // read data from registers
@@ -78,7 +83,7 @@ int main(void)
   
   
       startTime = micros();
-      Serial.write( (byte*)data, 14);
+      Serial.write( (byte*)data, 14);         // data is int16_t*
       //Serial.flush();
       stopTime = micros();
 

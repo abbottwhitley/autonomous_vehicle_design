@@ -42,7 +42,7 @@ int main(void)
 
   while(1)
   {
-    if( (micros() - sampleTime) > SAMPLE_INTERVAL_USEC )
+    if( (micros() - sampleTime) >= SAMPLE_INTERVAL_USEC )
     {
       
       // read data from registers
