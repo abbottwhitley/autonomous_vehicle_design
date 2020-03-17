@@ -38,11 +38,7 @@ void mysetup(void)
 
 int main(void)
 {
-  int16_t data[7] = { 0, 1, 2, 3, 4, 5, 6};
-  Serial.println("array contents");
-  Serial.write((byte*)data, 14);
-  Serial.flush();
-  delay(1000);
+  int16_t data[7] = { 1, 2, 3, 4, 5, 6, 7};
   
   unsigned long startTime, stopTime, sampleTime;
   unsigned long avgReadTime = 0, avgTxTime = 0;
@@ -53,6 +49,12 @@ int main(void)
   init();
   mysetup();
   sampleTime = micros();
+
+  Serial.println("Illustrate byte pointer correctly accesses array contents");
+  Serial.write((byte*)data, 14);
+  Serial.flush();
+  delay(1000);
+  
 
   while(1)
   {
@@ -92,7 +94,7 @@ int main(void)
       Serial.print("\nelapsed serial write time: ");
       Serial.print(stopTime - startTime);
       Serial.println(" usec");
-      Serial.flush();
+      //Serial.flush();
 
       ++count;
       sampleTime = micros();
