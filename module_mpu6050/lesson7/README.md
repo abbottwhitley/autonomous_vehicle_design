@@ -4,16 +4,40 @@ In this example, the Arduino will be transmitting accelerometer measurements to 
 
 The amount of data depends on the sampling rate and program run-time. If the accelerometer data is sampled at 1 kHz, that's 1000 data points to plot over a one second time interval. How should the python program handle that? Does it keep appending received data and trying to redraw the plot at 1 kHz? 
 
-When trying to visualize data in real-time, we are usually concerned with current data. Past data is valuable for logging and later analysis. We will plot only the most recent measurements.
-
-
-
-
+When trying to visualize data in real-time, we are usually concerned with current data. Past data is valuable for logging and later analysis. We will plot only the most recent measurements.<br>
+<br>
 
 ## Arduino Sketch - lesson7.ino
 
-The [sketch](lesson7.ino) serially transmits accelerometer x, y, and z measurements at a rate of 50 Hz, sample interval 20 ms.
+The [sketch](lesson7.ino) serially transmits accelerometer x, y, and z measurements at a rate of 50 Hz, sample interval 20 ms. The accelerometer data is not calibrated or scaled. The python program scales the measurements to units of g when plotting.<br>
 
+### What baud rate should we use for serial transmission?
+
+1. What data is transmitted?<br>
+    Accelerometer x, y, z values separated by ',' characters with a carriage return and line feed after z.
+
+2. What is the worst case for number of bits per transmission?
+
+    The accelerometer values' data type is int16_t, range: -32768, 32767. Using Serial.print to transmit data as ASCII characters, the worst case for an accelerometer value is six characters for -32768.
+
+    Note that each character is one byte.
+
+    Worst case transmission: x,y,z\r\n 
+    3 values (xyz) * 6 characters/value + 2 comma characters + 1 carriage return character + 1 newline character = 22 characters
+
+    Serial settings: 8 data bits, 1 start bit, 1 stop bit, 0 parity bit = 10 bits/character.
+
+    22 characters * 10 bits/character = 220 bits 
+
+
+3. What are the per second transmission time requirements?
+
+    Sample interval is 0.020 seconds, sample frequency is 1/.02 = 50 Hz
+
+    Require 220 bits / sample * 50 samples / sec = 11000 bits /second.
+
+**Baud rate** must be greater than 11000  bits/second.
+<br><br><br>
 
 ## python - lesson7.py
 
@@ -226,9 +250,15 @@ The plot shown below was generated from a static, accelerometer, placed on a fla
 The file [lesson7_subplot.py](lesson7_subplot.py) illustrates how to plot the same data in separate subplots.
 
 
-![Subplot Output](./images/Figure_1.png "subplot example")
+![Subplot Output](./images/Figure_2.png "subplot example")
 
 
 <br><br><br>
 
 Reference: https://i-systems.github.io/IoT/html/07_Arduino_with_Python_blank.html 
+
+<br><br>
+
+### Stopping the python program
+
+Close the figure to stop the python program. If this does not work, ctrl + z will kill the running process.

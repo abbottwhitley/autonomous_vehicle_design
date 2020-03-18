@@ -1,88 +1,196 @@
-# Lesson 8 - Tilt Sensing Using a 3-axis Accelerometer
+# Lesson 8 - How fast can we sample the measurement data?
 
-This lesson uses simple math relationships to approximate the x-axis and y-axis tilt angles from a three axis accelerometer. These approximations are reasonable for tilt angles less than 45 degrees, in a system with no vibration. Acceleration, due to vibration, is incorrectly interpreted as tilt. This approach should not be used on moving systems. 
+The default setting of the DPLF_CFG bit field in the CONFIG configuration register 26 is 0. Section 4.3 of the register map pdf, shows the accelerometer sampling frequency, F<sub>s</sub> = 1 kHZ and gyroscope sampling frequency,  F<sub>s</sub> = 8 kHZ. This is the limit imposed by the sensor hardware, but what about I2C communication speed limitations? 
 
+**What is our practical limit for reading the accelerometer, temperature, and gyroscope data, using I2C communication?**
 
-## What does an accelerometer measure?
+We have been using the Arduino Wire libary, standard mode, clock frequency, 100 kHz. How much data can we theoretically read at that clock frequency? 
+ 
+I2C serial communication transmits one bit each clock cycle. There are 8 bits per each data byte, plus one ack bit that must follow each byte. This requires a total of 9 clock cycles.
 
-1. Accelerometer sensors measure the difference between any linear acceleration in the accelerometer’s reference frame and the earth's gravitational field vector.
+Initiating data transfer requires the master to generate the start condition, send the 7-bit slave address, the read/write data direction bit, and an ack bit as the 9th bit.  In our case, the master is sending a read data direction bit and can then begin reading after the ack bit. After the data bytes are read the master transmits a stop condition.
 
-2. In the absence of linear acceleration, the accelerometer output is a measurement of the rotated gravitational field vector and can be used to determine the accelerometer pitch and roll orientation angles.
+![I2C Data Bits](./images/Introduction-to-I2C-Message-Frame-and-Bit-2.png "i2c data frames")
 
-![Accelerometer Angles](./images/Euler-angles-pitch-roll-yaw.png "Accelerometer Angles")
-
-https://www.researchgate.net/profile/Hristijan_Gjoreski/publication/259340414/figure/fig3/AS:297261767643138@1447884136270/A-rotation-represented-by-Euler-angles-pitch-roll-yaw-with-ps-ph-th-60-30.png 
-
-
-3. The orientation angles are dependent on the order in which the rotations are applied. 
-
-There are six sequences for any physical rotation:
-1. R-xyz
-2. R-xzy
-3. R-zxy
-4. R-zyx
-5. R-yxz
-6. R-yzx 
-
-Different rotation sequences may result in the same orientation and produce different pitch andd roll angles. For consistency, we define a default sequence. The most common order is the aerospace sequence of yaw, pitch and roll rotation.
-
-4. Accelerometer sensors are insensitive to rotation about the earth's gravitational field vector. The equations for the roll and pitch angles therefore have mathematical instabilities when rotation axes happen to become aligned with gravity　and point upwards or downwards. For more information on these instabilities and Euler angle calculations, see EulerAngles.md
+https://www.circuitbasics.com/wp-content/uploads/2016/01/Introduction-to-I2C-Message-Frame-and-Bit-2.png 
 
 
-## Coordinate System Definition
+Our example Arduino code, shown below, sends the MPU6050 I2C address, register number and then reads 14 data measurement registers. 
 
-The accelerometer has its own native coordinate system. Our experiments with the MPU-6050 will measure the pcb's orientation. When the MPU-6050 is mounted on our robot, we will need to translate data measured in the MPU-6050's coordinate frame to our robot's body frame. This will be covered in a later lesson. See EulerAngles.md for illustrations of coordinate reference frames.
+```
+Wire.beginTransmission(MPU6050_ADDRESS_AD0_LOW);
+Wire.write(0x3B);                     // start reading register 0x3B (ACCEL_XOUT_H)
+Wire.endTransmission(false);
+Wire.requestFrom(MPU6050_ADDRESS_AD0_LOW, 14);  // request reading 14 bytes
+ax = Wire.read() << 8 | Wire.read();    // reads 0X3B (ACCEL_XOUT_H) and 0x3C (ACCEL_XOUT_L)
+ay = Wire.read() << 8 | Wire.read(); 
+az = Wire.read() << 8 | Wire.read(); 
+temp = Wire.read() << 8 | Wire.read(); 
+gx = Wire.read() << 8 | Wire.read(); 
+gy = Wire.read() << 8 | Wire.read(); 
+gz = Wire.read() << 8 | Wire.read(); 
+```
 
-For the MPU-6050, we adopt the convention that the accelerometer output is negated to give the value +1g in any axis aligned wih the earth's downward gravitational vector.
+The table below contains the number of clock cycles required for the data transferred.
 
-The three-axis accelerometer oriented in the earth's gravitational field **g** and undergoing linear acceleration **a<sub>r</sub>** measured in the earth's reference frame r, will have the output **G<sub>p</sub>** given by
+| Data | Clock Cycles |
+| --- | --- |
+| i2c address | 7 |
+| read/write bit | 1 |
+| ack bit | 1 |
+| register number | 9 |
+| accel x | 18 |
+| accel y | 18 |
+| accel z | 18 |
+| temperature | 18 |
+| gyro x | 18 |
+| gyro y | 18 |
+| gyro z | 18 |
 
-**G<sub>p</sub>** = <br>
+Total clock cyles = (7 + 1 + 1) + 1 x 9 + 7 * 18 = 144 clock cycles
 
-| G<sub>px</sub> |<br>
-| G<sub>py</sub> |  = R(g - a<sub>r</sub>)<br>
-| G<sub>pz</sub> |<br>
+<br>
+At 100 kHZ, 144 clock cycles require 1.44 ms. There will be additional overhead time due to the Arduino programming code function calls. A 1.44 ms time period corresponds to a frequency of approximately 694 Hz, slower than the possible 1 kHz sample rate.
 
-where R is the rotation matrix describing the orientation of the device relative to the earth's coordinate frame.
+The MPU 6050 also supports an i2c fast mode clock frequency of 400 kHZ. At 400 kHz, 144 clock cycles require 0.36 ms, a frequency of 2778 Hz. 
 
-For accurate orientation angles, it is assumed that<br>
-- The accelerometer has no linear acceleration a<sub>r</sub> = 0. This assumption is needed to solve Equation 1 for the rotation matrix R and, in consequence, any linear acceleration from handshake or other sources will introduce errors into the orientation estimate.<br>
-- The initial orientation of the device is lying flat with the earth's gravitational field aligned with the device's z-axis:
+Let's examine how program design choices affect program execution speed:
+- I2C clock frequency
+- Serial baud rate
+- Serial print versus write functions
 
-**G<sub>p</sub>** = <br>
+<br>
 
-| G<sub>px</sub> |  = | 0 |<br>
-| G<sub>py</sub> |  = | 0 |<br>
-| G<sub>pz</sub> |  = | 1 |<br>
+## lesson8a.ino
 
+The Arduino lesson8a sketch reads data from the sensor and serially transmits the values read at a rate of 1 kHz. Reading the data registers at the max rate of 1000 samples/second has a sampling time interval of 1 millisecond (1000 micro seconds). The macro '`#define SAMPLE_INTERVAL_USEC 1000` is used to control read timing. 
 
-## Estimating Roll and Pitch with Accelerometer Data
+Running the program produces output similar to that shown below.
 
-We can only measure roll and pitch angles using the accelerometer. Yaw is the rotation about the Z axis. If we think about rotatation about the Z-axis (yaw), we will always read a constant 1G in the z axis direction, no matter how the accelerometer is rotated about z. Measuring yaw rotation requires the gyroscope. That will be covered in the another lesson.
-
-Accelerometers are more sensitive to small changes in tilt when they are perpendicular to gravity. I.e. when horizontal, small changes in tilt give useful readings. Past about 45 degrees of tilt they become increasingly less sensitive. 
-
-With a Triple axis accelerometer the z axis will be measuring 1g with the device horizontal. When tilted, the x and y axis measurements tell us the components of the gravity vector in those directions.
-
-
-## Estimating Roll and Pitch using R<sub>xyz</sub> 
-
-An estimation of the rotation R<sub>xyz</sub> roll angle &phi; and pitch angle &theta from [Freescale](./datasheets/AN3461.pdf), equations 25 and 26
-
-Roll angle: tan &phi;<sub>xyz</sub> = (Gpy)/(Gpz)
-
-Pitch angle: tan &theta;<sub>xyz</sub> = (-Gpx)/(sqrt(Gpy<sup>2</sup> + Gpz<sup>2</sup>)
-
-where Gpx, Gpy, Gpz are the accelerometer x, y, and z measurements, respectively.
+![lesson 8a output](./images/lesson8a_output.png "lesson 8a output")
 
 
+<br>
+The output looks fine, but <b>how do we know if the data is being read 1000 times per second?</b> How long does it take to read the data from the sensor's registers, store it in memory, and serially transmit it? 
 
-## lesson8.ino
 
-The program [lesson8.ino](lesson8.ino) measures the tilt of the x and y axes with regard to the gravity vector. Run the program to view the tilt angles. 
+## lesson8b.ino - Timing program control flow
 
->Notes<br>
-    >> The tangent function is undefined at 90 degrees, which makes this method problematic for robotic applications.<br>
-    >> What happens when the board is not tilted, but vibrated? (Says the board is tilted when it is not.)<br>
->Conclusion: this is not the best method for measuring tilt angle.<br>
-<br><br>
+The lesson8b Arduino sketch measures the elapsed time required to read the measurement data from the MPU6050 registers. It repeats this 5 times and calculates the average read time. Additionally, it measures the average elapsed time required to serially transmit the data. The image below shows the Serial monitor output for one test run.
+
+The average read time is 1.715 ms, for standard mode clock frequency. At a baud rate of 115200, the average time to serially transmit the data through the USB connection to the serial monitor was 1.555 ms. The Serial.print functions were used for transmission.
+
+![I2C Standard Mode read time](./images/timing100k_noflush.png "i2c standard mode read time")
+
+Clearly, the program is not able to read and transmit the data at 1 kHz, requiring 3.27 ms to read and transmit in the test run. The above results are based on one test run that averaged the timing of 5 read/transmits. Changing the count to 100 and running the experiment several times produced similar timing results. Don't take my word for it, try it for yourself.
+
+Now that we are convinced the timing data is consistent for multiple samples, what can we do to improve the execution time?
+
+The factors that affect execution time are
+
+- I2C clock frequency
+- Serial print versus write
+- Serial baud rate
+
+Let's start with te I2C clock frequency. Section 5.3 of the sensor's data sheet indicates 400 kHz Fast Mode I2C is supported for communicating with all registers. Let's test the effect of increasing the I2C clock frequency from 100 kHz to 400 kHz.
+
+
+### Fastmode clock frequency
+
+The Arduino Wire library standard mode clock frequency is 100 kHz. The setClock function is used to set it to fast mode, 400 kHz, immediately after the Wire.begin function.
+
+```
+Wire.begin();
+Wire.setClock(400000L);
+```
+<br>
+<br>
+
+The image below shows the fast mode clock frequency had an average read time of 0.544 ms, 1.165 ms faster than standard mode, which is about 3 times faster. This is fast enough to achieve the MPU 6050 hardware sampling rate of 1 kHz for read time, but we still need to speed the serial transmission time.
+
+![I2C Fast Mode read time](./images/timing400k_noflush.png "i2c fast mode read time")
+
+The Serial print is transmitting extra information, such as the labels "ax: ", etc. 
+
+```
+Serial.print("ax: \t");   Serial.print(ax);
+Serial.print("\tay: \t"); Serial.print(ay);
+Serial.print("\taz: \t"); Serial.print(az);
+Serial.print("\ttemp: \t"); Serial.print(temp);
+Serial.print("\tgx: \t");   Serial.print(gx);
+Serial.print("\tgy: \t"); Serial.print(gy);
+Serial.print("\tgz: \t"); Serial.println(gz);
+``` 
+
+Let's remove the unneccessary labels and tabs, just transmitting the values, separated by commas. The commas (or some other delimiter) are needed so that the receiving program is able to separate the values.
+
+```
+Serial.print(ax);
+Serial.print(",");
+Serial.print(ay);
+Serial.print(",");
+Serial.print(az);
+Serial.print(",");
+Serial.print(temp);
+Serial.print(",");
+Serial.print(gx);
+Serial.print(",");
+Serial.print(gy);
+Serial.print(",");
+Serial.print(gz);
+```
+
+
+This improves the serial print time to 1.252 ms, but not enough to meet the overall 1 kHz requirement for both reading and transmission.
+
+![serial print time](./images/timing400k_print.png "serial print time")
+
+<br>
+<br>
+
+### What is the correct baud rate?
+
+Is it the baud rate that is slowing transmission? What is the worst case number of bytes transitted with the above code?
+
+The int16_t values can range from -32768 to 32767. -32768 requires 6 characters at 1 character per byte, or 6 bytes. Each comma requires 1 byte. The println sends a carriage return and line feed.
+
+<b><u>Serial print Byte Calculations</u></b>
+
+(7 data measurements x 6 bytes) + (6 commas x 1 byte) + carriage return byte + new line byte = 50 bytes.
+
+50 bytes x 10 bits/ byte = 500 bits.
+
+1000 transmissions/sec x 500 bits/transmission = 500,000 bits / second.
+
+The 115,200 baud rate only allows 115,200 bits /second. That's a bottleneck as well. We can increase the baud rate and/or more efficiently transmit data with the Serial write function.
+<br>
+
+<b><u>Serial write Byte Calculations</u></b>
+
+The Serial write function transmits the int16_t values as a series of two bytes. This is better than the worst case ASCII character transmission of 6 bytes. We do not need the comma delimiter because we know exactly how many bytes will be transmitted each time.
+
+7 data measurements/transmission x 2 bytes/measurement = 14 bytes / transmission
+
+14 bytes/transmission * 10 bits/byte = 140 bits/transmission
+
+140 bits/transmission * 1000 transmissions/sec = 140,000 bits/sec
+
+This still exceeds the 115200 baud rate. Lesson8c uses the Serial.write function to measure the transmission timing.
+
+
+## lesson8c.ino - Serial.write time
+
+Lesson 8c uses the Serial write function to transmit the measurements. The example output below shows the improved transmission time of 0.106 ms for each transmission. The baud rate was 115200. With a read time of 0.544 ms and transmission time of 0.106 ms, this code achieves the program execution time of less than 1 ms for reading and transmitting the data. 
+
+Note that what appears to be garbage characters in the output image is the ASCII representation of the data measurements. The Serial monitor program tries to convert the byte values to printable ASCII characters.
+
+![serial write time](./images/timing_serial_write_no_flush.png "serial write time")
+
+It is left as a student exercise to test how changing the baud rate affects execution time. Remember to consider the microcontroller's error at various baud rates.
+
+
+## Conclusion
+
+This lesson demonstrated the importance of considering how communication settings such as clock frequency and baud rate affect program execution time. Also, the difference in Serial print and write functions plays a crucial role in execution time. 
+
+When working with time sensitive data, we must always check program execution time to verify the code runs at the expected rate. 

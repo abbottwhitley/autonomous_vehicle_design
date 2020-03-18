@@ -1,6 +1,6 @@
 # Interial Measurement with the MPU-6050 Sensor
 
-<p>An inertial measurement unit (IMU) is a device that measures and reports a body's force, angular rate, and orientation, using a combination of accelerometers, gyroscopes, and magnetometers. The accelerometers detect linear acceleration. Gyroscopes measure the rotational (angular) rate. Some IMUs include a magnetometer to provide a heading reference. There is one accelerometer, gyro, and magnetometer for each of the three vehicle axes: roll, pitch, and yaw.</p>
+<p>An inertial measurement unit (IMU) is a device that measures and reports a body's force, angular rate, and orientation, using a combination of accelerometers, gyroscopes, and magnetometers. The accelerometers detect linear acceleration. Gyroscopes measure the rotational (angular) rate. Some IMUs include a magnetometer to provide a heading reference. We refer to a vehicle's axes as roll, pitch, and yaw.</p>
 
 ![Roll Pitch Yaw](./images/rollpitchyaw.png "roll pitch yaw")
 
@@ -110,6 +110,12 @@ When an inertial sensor is at rest, there is often a small offset difference fro
 
 Accelerometer data updated and plotted in real-time using matplotlib.pyplot.funcanimation.
 
-### Lesson 8 - Roll, Pitch Angle Estimates Using Accelerometer
+
+### Lesson 8 - How fast can we read measurements?
+
+The stated default MPU 6050 sample rates are 1 kHz for the accelerometer and 8 kHz for the gyrosope. This lesson investigates whether or not these rates can be achieved.
+
+
+### Lesson 9 - Roll, Pitch Angle Estimates Using Accelerometer
 
 The accelerometer's gravity vector is used to estimate roll and pitch angles. 
