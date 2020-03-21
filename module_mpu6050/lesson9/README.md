@@ -26,7 +26,7 @@ There are six sequences for any physical rotation:
 
 Different rotation sequences may result in the same orientation and produce different pitch andd roll angles. For consistency, we define a default sequence. The most common order is the aerospace sequence of yaw, pitch and roll rotation.
 
-4. Accelerometer sensors are insensitive to rotation about the earth's gravitational field vector. The equations for the roll and pitch angles therefore have mathematical instabilities when rotation axes happen to become aligned with gravity and point upwards or downwards. For more information on these instabilities and Euler angle calculations, see EulerAngles.md
+4. Accelerometer sensors are insensitive to rotation about the earth's gravitational field vector. The equations for the roll and pitch angles therefore have mathematical instabilities when rotation axes happen to become aligned with gravity and point upwards or downwards. 
 
 
 ## Coordinate System Definition
