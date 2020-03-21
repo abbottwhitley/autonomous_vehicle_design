@@ -36,9 +36,11 @@ Rotation of a vector from the Inertial Frame to the Vehicle-1 Frame can be perfo
 
 R<sup>v1</sup><sub>I</sub> =  
 
-| cos(&psi;)   sin(&psi;)   0 | <br>
-| -sin(&psi;)  cos(&psi;)   0 | <br>
-|       0         0         1 | <br>
+|  |  |  |
+| --- | --- | --- |
+| cos(&psi;) | sin(&psi;) | 0 | 
+| -sin(&psi;) | cos(&psi;) | 0 | 
+| 0 | 0 | 1 | <br>
 
 
 
@@ -57,9 +59,11 @@ The rotation matrix for moving from the vehicle-1 frame to the vehicle-2 frame i
 
 R<sup>v2</sup><sub>v1</sub> =  
 
-| cos(&theta;)        0     -sin(&theta;)  | <br>
-|       0             1            0       | <br>
-| sin(&theta;)        0       cos(&theta;) | <br>
+| | | |
+| --- | --- | --- |
+| cos(&theta;) | 0 | -sin(&theta;)  | 
+|       0      | 1 | 0 | 
+| sin(&theta;) | 0 | cos(&theta;) | <br>
 
 
 The rotation matrix for moving from the inertial frame to the vehicle-2 frame consists simply of the yaw matrix multiplied by the pitch matrix:
@@ -84,15 +88,17 @@ The rotation matrix for moving from the vehicle-2 frame to the body frame is giv
 
 R<sup>B</sup><sub>v2</sub>(&phi;)=
 
-|     1             0          0      | <br>
-| cos(&phi;)        0      sin(&phi;) | <br>
-| -sin(&phi;)       0      cos(&phi;) | <br>
+| | | |
+| --- | --- | --- |
+|     1 |  0  | 0  |
+| cos(&phi;)  | 0  | sin(&phi;) | 
+| -sin(&phi;) | 0  | cos(&phi;) | 
 
 The complete rotation matrix for moving from the inertial frame to the body frame is given by
 
-R<sup>B</sup><sub>I</sub>(ϕ,θ,ψ)=R<sup>B</sup><sub>v2</sub>(ϕ)R<sup>v2</sup><sub>v1</sub>(θ)R<sup>v1</sup><sub>I</sub>(ψ).
-
-R<sup>B</sup><sub>I</sub>(&psi;, &theta;, &phi;)=
+R<sup>B</sup><sub>I</sub>(ϕ,θ,ψ)=R<sup>B</sup><sub>v2</sub>(ϕ) R<sup>v2</sup><sub>v1</sub>(θ) R<sup>v1</sup><sub>I</sub>(ψ).
+<br>
+<br>
 
 ### Gimbal Lock
 Gimbal lock occurs when the orientation of the sensor cannot be uniquely represented using Euler Angles.  The exact orientation at which gimbal lock occurs depends on the order of rotations used.  On CH Robotics' sensors, the order of operations results in gimbal lock when the pitch angle is 90 degrees.
@@ -120,9 +126,11 @@ The resulting transformation matrix for converting body-frame angular rates to E
 
 D(ϕ,θ,ψ)=
 
-| 1    sin(&phi;) tan(&theta;)  cos(&phi;)tan(&theta;)  |<br>
-| 0    cos(&phi;)               -sin(&phi;)             |<br>
-| 0    sin(&phi;)/cos(&theta;)  cos(&phi;)/cos(&theta;) |<br>
+| | | |
+| --- | --- | --- |
+| 1  | sin(&phi;) tan(&theta;) | cos(&phi;)tan(&theta;)  |
+| 0  | cos(&phi;)              | -sin(&phi;)             |
+| 0  | sin(&phi;)/cos(&theta;) | cos(&phi;)/cos(&theta;) |
 
 
 Let p represent the body-frame x-axis gyro output, q represent the body-frame y-axis gyro output, and r represent the body-frame z-axis output.  Then it follows that the Euler Angle rates are computed as
