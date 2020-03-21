@@ -85,7 +85,7 @@ int main(void)
 
       // Freescale, equations 25 and 26
       roll = atan(accel.y / accel.z) * 180.0/PI;
-      pitch = atan(accel.x / sqrt(pow(accel.y,2) + pow(accel.z,2))) * 180.0/PI;
+      pitch = atan(-accel.x / sqrt(pow(accel.y,2) + pow(accel.z,2))) * 180.0/PI;
       
       #ifdef DEBUG
         printAngles(roll, pitch);
