@@ -9,7 +9,6 @@
  *   Accelerometer +- 1g
  *   Gyro  +- 250 deg/sec
  *   
- *  I2C fast mode, clock frequency 400 kHz
  *  
  */
 void setupMPU6050(void)
