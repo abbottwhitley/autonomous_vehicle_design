@@ -77,9 +77,9 @@ where Gpx, Gpy, Gpz are the accelerometer x, y, and z measurements, respectively
 
 
 
-## lesson8.ino
+## lesson9.ino
 
-The program [lesson8.ino](lesson8.ino) measures the tilt of the x and y axes with regard to the gravity vector. Run the program to view the tilt angles. 
+The program [lesson9.ino](lesson9.ino) measures the tilt of the x and y axes with regard to the gravity vector. Run the program to view the tilt angles. 
 
 >Notes<br>
     >> The tangent function is undefined at 90 degrees, which makes this method problematic for robotic applications.<br>
