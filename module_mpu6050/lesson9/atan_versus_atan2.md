@@ -1,4 +1,4 @@
-# Lesson 8b - atan versus atan2
+# Lesson: atan versus atan2
 
 C++ has two math library functions that calculate the arctangent of an angle: atan, atan2. The atan function only provides angles for quadrants I and IV. The atan2 function provides angles for all four quadrants.
 
