@@ -44,7 +44,7 @@ Error Handling: https://en.cppreference.com/w/cpp/numeric/math/atan2
 
 ## atan_vs_atan2.ino
 
-The [atan_versus_atan2.ino](./atan_versus_atan2/atan_versus_atan2.ino) produces the following output. atan2 distinguishes the correct quadrants, while atan's angle is incorrect for quadrants 2 and 3.
+The [atan_versus_atan2.ino](./atan_versus_atan2/atan_vs_atan2.ino) produces the following output. atan2 distinguishes the correct quadrants, while atan's angle is incorrect for quadrants 2 and 3.
 
 ![atan versus atan 2](./images/atanvsatan245.png "atan versus atan2 quadrant resolution")
 
@@ -53,7 +53,7 @@ The [atan_versus_atan2.ino](./atan_versus_atan2/atan_versus_atan2.ino) produces 
 
 ## atan_vs_atan2_undefined.ino
 
-The [atan_versus_atan2_undefined.ino](./atan_versus_atan2_undefined/atan_versus_atan2_undefined.ino) produces the following output. The Arduino 1.8.10 atan2 implementation is able to handle angles where the tangent is mathematically undefined.
+The [atan_versus_atan2_undefined.ino](./atan_vs_atan2_undefined/atan_vs_atan2_undefined.ino) produces the following output. The Arduino 1.8.10 atan2 implementation is able to handle angles where the tangent is mathematically undefined.
 
 
 
