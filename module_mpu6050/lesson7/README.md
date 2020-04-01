@@ -9,7 +9,7 @@ When trying to visualize data in real-time, we are usually concerned with curren
 
 ## Arduino Sketch - lesson7.ino
 
-The [sketch](lesson7.ino) serially transmits accelerometer x, y, and z measurements at a rate of 50 Hz, sample interval 20 ms. The accelerometer data is not calibrated or scaled. The python program scales the measurements to units of g when plotting.<br>
+The [sketch](./lesson7/lesson7.ino) serially transmits accelerometer x, y, and z measurements at a rate of 50 Hz, sample interval 20 ms. The accelerometer data is not calibrated or scaled. The python program scales the measurements to units of g when plotting.<br>
 
 ### What baud rate should we use for serial transmission?
 

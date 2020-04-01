@@ -1,4 +1,4 @@
-# Lesson 8 - Tilt Sensing Using a 3-axis Accelerometer
+# Lesson 9 - Tilt Sensing Using a 3-axis Accelerometer
 
 This lesson uses simple math relationships to approximate the x-axis and y-axis tilt angles from a three axis accelerometer. These approximations are reasonable for tilt angles less than 45 degrees, in a system with no vibration. Acceleration, due to vibration, is incorrectly interpreted as tilt. This approach should not be used on moving systems. 
 
@@ -23,10 +23,10 @@ There are six sequences for any physical rotation:
 4. R-zyx
 5. R-yxz
 6. R-yzx 
-
+Ti
 Different rotation sequences may result in the same orientation and produce different pitch andd roll angles. For consistency, we define a default sequence. The most common order is the aerospace sequence of yaw, pitch and roll rotation.
 
-4. Accelerometer sensors are insensitive to rotation about the earth's gravitational field vector. The equations for the roll and pitch angles therefore have mathematical instabilities when rotation axes happen to become aligned with gravity　and point upwards or downwards. For more information on these instabilities and Euler angle calculations, see EulerAngles.md
+4. Accelerometer sensors are insensitive to rotation about the earth's gravitational field vector. The equations for the roll and pitch angles therefore have mathematical instabilities when rotation axes happen to become aligned with gravity and point upwards or downwards. 
 
 
 ## Coordinate System Definition
@@ -77,12 +77,22 @@ where Gpx, Gpy, Gpz are the accelerometer x, y, and z measurements, respectively
 
 
 
-## lesson8.ino
+## lesson9a.ino
 
-The program [lesson8.ino](lesson8.ino) measures the tilt of the x and y axes with regard to the gravity vector. Run the program to view the tilt angles. 
+The program [lesson9a.ino](lesson9a.ino) measures the tilt of the x and y axes with regard to the gravity vector. Run the program to view the tilt angles. 
 
 >Notes<br>
     >> The tangent function is undefined at 90 degrees, which makes this method problematic for robotic applications.<br>
     >> What happens when the board is not tilted, but vibrated? (Says the board is tilted when it is not.)<br>
 >Conclusion: this is not the best method for measuring tilt angle.<br>
 <br><br>
+
+
+## atan versus atan2
+
+Compares the atan and atan2 functions.
+
+
+## lesson9b.ino
+
+Lesson 9b uses the atan and atan2 function to eliminate duplicate solutions.
