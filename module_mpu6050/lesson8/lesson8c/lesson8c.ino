@@ -21,7 +21,9 @@
 
 void mysetup(void)
 {
-  Serial.begin(115200);
+  long baud; 
+  baud = 2000000;
+  Serial.begin(baud);
   Wire.begin();
   Wire.setClock(400000L);
   delay(100);
@@ -32,6 +34,8 @@ void mysetup(void)
                                           // and uses internal oscillator as clock
   Wire.endTransmission(true);
   Serial.println("setup complete");
+  Serial.print("BAUD RATE: "); 
+  Serial.println(baud); 
   delay(250);
 }
 
