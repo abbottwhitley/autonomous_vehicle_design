@@ -6,7 +6,7 @@ The table below attempts to reconcile the pin names found in the data sheet, on 
 
 Example: The TB6612FNG data sheet shows pin name IN1, which the Elegoo PCB calls AIN1. AIN1 is connected to pin 7.
 
-| | Pin Numbers| |
+**Pin Numbers**
 | TB6612FNG | Elegoo PCB  | Arduino Nano |
 | --- | --- | --- |
 | IN1 | AIN1 | 7 |
