@@ -15,3 +15,5 @@ The unit starts by presenting an overview of a PID control system, low-level mot
 Lesson 1 presents an overview of a PID control system and some examples illustrating the effects of the Kp and Kd parameters.
 
 Lesson 2 presents low-level motor control functions using the TB6612FNG motor driver.
+
+Lesson 3 discusses the PID code algorithm and two possible methods of tuning the control system.
