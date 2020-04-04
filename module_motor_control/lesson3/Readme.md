@@ -1,6 +1,16 @@
 # Lesson 3: Self-Balancing Control System Using Gyroscope & Accelerometer
 
-The self-balancing robot design is essentially an inverted pendulum, with the center of mass above the pivot point. An inverted pendulum is inherently unstable. The slighest disturbance from the equilibrium position produces a force away from the equilibrium point that destabilizes the system. Balancing the robot requires a low-latency control system to instantly correct any errors in tilt.
+Control - The Inverted Pendulum Problem
+
+Balancing robots represent the classic inverted pendulum problem, in which a large mass is placed at the end of a pole. The pole is free to rotate around the base, and the base is free to move in the plane perpendicular to the vertical. The goal is to keep the pole vertical by moving the base in response to changes in the angle.
+
+![Inverted Pendulum](./images/Mobile-wheeled-inverted-pendulum-MWIP-system-model.png "inverted pendulum")
+
+[1] https://www.researchgate.net/profile/Jian_Huang14/publication/285576864/figure/fig6/AS:328305132752907@1455285451614/Mobile-wheeled-inverted-pendulum-MWIP-system-model.png 
+
+
+An inverted pendulum is inherently unstable. The slighest disturbance from the equilibrium position produces a force away from the equilibrium point that destabilizes the system. Balancing the robot requires a low-latency control system to instantly correct any errors in tilt.
+
 
 ## How do we balance the robot?
 
