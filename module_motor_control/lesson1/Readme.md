@@ -87,9 +87,18 @@ The first plot below shows the response for Kp = 5. There is overshoot and then 
 ![Kp 5](./images/kp5.png "Kp overshoot, settles down")
 
 
-The next plot shows the response for Kp = 10. The maximum overshoot is 15 times the desired velocity and the system is oscillating.
+If we start increasing Kp by 1, the system becomes increasingly unstable.For Kp = 6, the overshoot is larger and the systems takes longer to settle to a steady state. 
 
-![Kp 10](./images/kp10.png "Kp overshoot, ringing")
+![Kp 6](./images/kp6.png "Kp ringing, but eventually settles")
+
+
+At Kp = 7, the system begins to oscillate
+
+![Kp 7](./images/kp7.png "Kp causes increasing oscillation")
+
+The next plot shows the response for Kp = 10. The maximum overshoot is 15 times the desired velocity and the system exhibits a regular periodic oscillation.
+
+![Kp 10](./images/kp10.png "Kp causes large overshoot, ringing")
 
 
 ## Derivative Control
@@ -122,19 +131,17 @@ while True:
 
 Run the program for various values of K<sub>p</sub> to see the effects on the rise time, overshoot, and oscillation.
 
-The plot below shows the control system response for Kp = 5, Kd = 0.1. For the proportional only controller, Kp = 5, did not cause the system to oscillate. Setting the parameter Kd to 0.1 reduced the overshoot magnitude, caused some early ringing in the system before it settled to the set point value.
+The plot below shows the control system response for Kp = 5, Kd = 0.025. For the proportional only controller, Kp = 5, did not cause the system to oscillate. Setting the parameter Kd to 0.025 has not decreased overshoot magnitude and caused some early ringing in the system before it settled to the set point value.
 
 ![PD Control System](./images/kpkd1.png "Kp stable, Kd ringing before settling")
 
 
-Increasing Kd causes the system to oscillate, as shown below.
+Increasing Kd causes the system to become unstable, as shown below.
 
 ![PD Control System](./images/kpkd2.png "Kp stable, Kd ringing")
 
 
-Decreasing Kd reduces the amount of early ringing and causes the system to settle slightly faster.
-
-![PD Control System](./images/kpkd3.png "Kp stable, Kd settles faster")
+Adding a derivative control term to this example made the system response worse than just the P controller. Note that this is just a simulation example and that there are systems where derivative control helps improve performance.
 
 
 ## Integral Control
