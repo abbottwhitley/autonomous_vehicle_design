@@ -47,12 +47,14 @@ The derivative control looks at the rate of change in the error, trying to predi
 
 ## PID Software Implementation
 
+
 **main function control loop algorithm**
 
+```
 variables:
-  target - desired robot tilt angle, reference point
-  nextTime - next time to run control loop
-  angle - current robot angle
+ target - desired robot tilt angle, reference point
+ nextTime - next time to run control loop 
+ angle - current robot angle
 
 while true
     if nextTime < clock time
@@ -60,10 +62,12 @@ while true
         angle = getAngle()
         motorOutput = PID(target, angle)
         moveMotors(motorOutput)
+```
 
 
 **PID Control function algorithm**
 
+```
 PID( targetAngle, currentAngle)
     // declare tuning parameter constants
     KP = ?,  KD = ?, KI = ?
@@ -98,12 +102,10 @@ PID( targetAngle, currentAngle)
     if pid not within range, constrain
 
     return pid
+```
 
+## Tuning - How do we determine the K constants?
 
-
-## Tuning - How do we determine the K constants?**
-
-<br><br>
 
 ### Step 1 - Calibrate the IMU Sensor
 
