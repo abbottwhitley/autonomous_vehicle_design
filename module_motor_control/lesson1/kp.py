@@ -13,7 +13,7 @@ accelLimit = 100.0   # m/s^2
 desiredVelocity = 1.0     # m/s
 
 # PID control constants
-kp = 5         # proportional gain term
+kp = 7         # proportional gain term
 
 # initial values
 acceleration = 0.3       # m/s^2

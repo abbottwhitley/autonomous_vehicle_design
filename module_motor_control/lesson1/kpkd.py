@@ -14,12 +14,12 @@ desiredVelocity = 1.0     # m/s
 
 # PID control constants
 kp = 5         # proportional gain term
-kd = 0.025        # derivative control term
+kd = 0.2       # derivative control term
 
 # initial values
 acceleration = 0.3       # m/s^2
 presentVelocity = 0.0     # m/s
-prevError = desiredVelocity = presentVelocity
+prevError = 0.0
 
 dt = 0.3       # sample time interval, sec
 count = 0       # loop count
@@ -35,11 +35,17 @@ while count < 30:
     velocity.append(presentVelocity)
     error = desiredVelocity - presentVelocity
     derrdt = (error - prevError) / dt 
-    print("\ncount: " + str(count))
-    print("present velocity: " + str(presentVelocity))
-    print("error: " + str(error))
-    print("acceleration: " + str(acceleration))
-    acceleration = kp * error + kd * derrdt
+    pterm = kp * error
+    dterm = kd * derrdt 
+    print("\ncount:              " + str(count))
+    print("acceleration:         " + str(acceleration))
+    print("present velocity:     " + str(presentVelocity))
+    print("error:                " + str(error))
+    print("derrdt:               " + str(derrdt))
+    print("p term:               " + str(pterm))
+    print("d term:               " + str(dterm))
+    
+    acceleration = pterm + dterm
     if abs(acceleration) > accelLimit:
         if acceleration > 0:
             acceleration = accelLimit 

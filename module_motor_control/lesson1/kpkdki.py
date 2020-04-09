@@ -14,13 +14,13 @@ desiredVelocity = 1.0     # m/s
 
 # PID control constants
 kp = 5         # proportional gain constant
-kd = 0.1     # derivative control constant
+kd = 0.025     # derivative control constant
 ki = 0.1875       # integral control constant
 
 # initial values
 acceleration = 0.3       # m/s^2
 presentVelocity = 0.0     # m/s
-prevError = desiredVelocity = presentVelocity
+prevError = 0.0
 errorSum = 0.0
 
 dt = 0.3       # sample time interval, sec
